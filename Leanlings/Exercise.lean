@@ -20,7 +20,7 @@ def path (e : Exercise) : System.FilePath :=
   s!"exercises/{e.dir}/{e.name}.lean"
 
 def solutionPath (e : Exercise) : System.FilePath :=
-  s!"solutions/{e.dir}/{e.name}.lean"
+  s!".solutions/{e.dir}/{e.name}.lean"
 
 end Exercise
 end Leanlings
