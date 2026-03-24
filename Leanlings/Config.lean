@@ -17,7 +17,7 @@ def exercises : Array Exercise := #[
   { name := "basics2", dir := "01_basics",
     hint := "Each type needs a value of that type:\n`Nat` → numbers like 0, 1, 42\n`String` → text in quotes like \"hello\"\n`Bool` → true or false\nMake sure your string isn't empty!" },
   { name := "basics3", dir := "01_basics",
-    hint := "How do you combine two strings into one in Lean?\nLook for the string concatenation operator." },
+    hint := "Use `++` to concatenate strings: \"Hello, \" ++ \"Lean!\".\nUse `s!\"...{variable}...\"` for string interpolation." },
   { name := "basics4", dir := "01_basics",
     hint := "Boolean operators combine Bool values.\nWhat does AND (&&) do? What does OR (||) do? What does NOT (!) do?\nThink through the truth table." },
 
@@ -37,7 +37,7 @@ def exercises : Array Exercise := #[
   { name := "functions3", dir := "03_functions",
     hint := "Anonymous functions start with `fun`, followed by parameters, then `=>`.\nFor example: `fun x => x + 1`." },
   { name := "functions4", dir := "03_functions",
-    hint := "`.map` applies a function to each element of a list.\n`.filter` keeps elements that satisfy a predicate.\nThe `·` shorthand represents the argument." },
+    hint := "`.map` applies a function to each element.\n`.filter` keeps elements matching a predicate.\n`.foldl f init` combines elements: `foldl (· + ·) 0` sums a list.\nThe `·` shorthand represents the argument." },
 
   -- 04_control_flow
   { name := "if1", dir := "04_control_flow",
@@ -51,7 +51,7 @@ def exercises : Array Exercise := #[
   { name := "structs1", dir := "05_structures",
     hint := "Create a struct with `{ fieldName := value, ... }` syntax.\nWhat fields does the structure have?" },
   { name := "structs2", dir := "05_structures",
-    hint := "Access fields with dot notation: `point.x`, `point.y`.\nUse them in arithmetic expressions." },
+    hint := "Access fields with dot notation: `p.firstName`, `p.age`.\nFor `birthday`, use update syntax: `{ p with age := ... }`." },
   { name := "structs3", dir := "05_structures",
     hint := "When a field has a default value, you can omit it.\nWhat happens if you omit all fields? What about overriding just one?" },
 

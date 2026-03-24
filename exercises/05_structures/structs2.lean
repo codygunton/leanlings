@@ -5,20 +5,27 @@
     p.x    -- 3.0
     p.y    -- 4.0
 
-  TODO: Implement `fullName` that concatenates first and last name,
-        and `isAdult` that checks if age >= 18.
+  You can also create a modified copy with `{ s with field := val }`:
+    let p2 := { p with age := 26 }  -- same name, new age
+
+  TODO: Implement all three functions.
 -/
 
 structure Person where
   firstName : String
   lastName : String
   age : Nat
+  deriving BEq
 
 def fullName (p : Person) : String := sorry
 
 def isAdult (p : Person) : Bool := sorry
 
+-- Return a new Person with age incremented by 1
+def birthday (p : Person) : Person := sorry
+
 -- Don't change below this line!
 #guard fullName { firstName := "Jane", lastName := "Doe", age := 25 } == "Jane Doe"
 #guard isAdult { firstName := "A", lastName := "B", age := 18 } == true
 #guard isAdult { firstName := "A", lastName := "B", age := 17 } == false
+#guard birthday { firstName := "A", lastName := "B", age := 25 } == { firstName := "A", lastName := "B", age := 26 }
