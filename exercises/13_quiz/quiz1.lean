@@ -14,7 +14,6 @@
 -- Here are the types for our catalog.
 
 inductive Genre where
-  | fiction
   | science
   | history
   | fantasy
@@ -81,8 +80,9 @@ def titles (books : List Book) : List String := sorry
 -- 12. Compute the total page count for a catalog.
 def totalPages (books : List Book) : Nat := sorry
 
--- 13. Repeat a string n times: repeatStr "ab" 3 = "ababab"
-def repeatStr (s : String) : Nat → String := sorry
+-- 13. Render a star rating as a string of stars.
+--     starBar (.stars 3) = "***", starBar .unrated = ""
+def starBar : Rating → String := sorry
 
 -- =============================================
 -- Part 4: Proofs (Units 8, 9, 10, 11)
@@ -93,35 +93,42 @@ theorem zero_not_long (b : Book) (h : b.pages = 0) :
     b.isLong = false := by
   sorry
 
--- 15. False implies anything.
-theorem false_elim {P : Prop} (h : False) : P :=
+-- 15. withRating gives back the rating it was given.
+theorem withRating_rating (b : Book) (r : Rating) :
+    (b.withRating r).rating = r := by
   sorry
 
--- 16. Disjunction is symmetric.
-theorem or_swap {A B : Prop} : A ∨ B → B ∨ A := by
+-- 16. An unrated book has a star count of 0.
+theorem unrated_zero_stars (b : Book) (h : b.rating = .unrated) :
+    b.rating.toNat = 0 := by
   sorry
 
--- 17. Given implications to B and C, prove their conjunction.
-theorem and_of_implies {A B C : Prop} (f : A → B) (g : A → C) :
-    A → B ∧ C := by
+-- 17. Science and history are different genres.
+theorem science_ne_history : Genre.science ≠ Genre.history := by
+  sorry
+
+-- 18. Every genre is science, history, or fantasy.
+theorem genre_cases (g : Genre) :
+    g = .science ∨ g = .history ∨ g = .fantasy := by
   sorry
 
 -- For the induction proofs below:
-def double : Nat → Nat
-  | 0 => 0
-  | n + 1 => 2 + double n
-
-def countItems : List α → Nat
+def pageCount : List Book → Nat
   | [] => 0
-  | _ :: xs => 1 + countItems xs
+  | b :: bs => b.pages + pageCount bs
 
--- 18. Doubling gives the same result as adding to itself.
-theorem double_is_add_self (n : Nat) : double n = n + n := by
+def bookTitles : List Book → List String
+  | [] => []
+  | b :: bs => b.title :: bookTitles bs
+
+-- 19. pageCount distributes over append.
+theorem pageCount_append (l1 l2 : List Book) :
+    pageCount (l1 ++ l2) = pageCount l1 + pageCount l2 := by
   sorry
 
--- 19. countItems distributes over append.
-theorem countItems_append (l1 l2 : List α) :
-    countItems (l1 ++ l2) = countItems l1 + countItems l2 := by
+-- 20. bookTitles distributes over append.
+theorem bookTitles_append (l1 l2 : List Book) :
+    bookTitles (l1 ++ l2) = bookTitles l1 ++ bookTitles l2 := by
   sorry
 
 -- =============================================
@@ -130,39 +137,46 @@ theorem countItems_append (l1 l2 : List α) :
 
 def catalog : List Book := [
   ⟨"Dune", "Herbert", 412, .science, .stars 5⟩,
-  ⟨"1984", "Orwell", 328, .fiction, .stars 4⟩,
+  ⟨"Sapiens", "Harari", 443, .history, .stars 4⟩,
   { title := "Cosmos", author := "Sagan", pages := 365, genre := .science },
-  ⟨"Hobbit", "Tolkien", 310, .fantasy, .stars 5⟩,
-  ⟨"Sapiens", "Harari", 443, .history, .stars 3⟩
+  ⟨"The Hobbit", "Tolkien", 310, .fantasy, .stars 5⟩,
+  ⟨"SPQR", "Beard", 606, .history, .stars 3⟩
 ]
 
-#guard Genre.fiction == Genre.fiction
-#guard Genre.fiction != Genre.science
+#guard Genre.science == Genre.science
+#guard Genre.history == Genre.history
+#guard Genre.fantasy == Genre.fantasy
+#guard Genre.science != Genre.history
+#guard Genre.fantasy != Genre.science
 #guard toString (Rating.stars 5) == "5 stars"
+#guard toString (Rating.stars 2) == "2 stars"
 #guard toString (Rating.stars 1) == "1 star"
 #guard toString Rating.unrated == "unrated"
-#guard Genre.name .fiction == "fiction"
 #guard Genre.name .science == "science"
 #guard Genre.name .history == "history"
 #guard Genre.name .fantasy == "fantasy"
 #guard (Rating.stars 5).toNat == 5
+#guard (Rating.stars 0).toNat == 0
 #guard Rating.unrated.toNat == 0
-#guard (⟨"Big", "A", 500, .fiction, .unrated⟩ : Book).isLong == true
-#guard (⟨"Small", "B", 100, .fiction, .unrated⟩ : Book).isLong == false
-#guard (⟨"Edge", "C", 300, .fiction, .unrated⟩ : Book).isLong == false
+#guard (⟨"Big", "A", 500, .fantasy, .unrated⟩ : Book).isLong == true
+#guard (⟨"Small", "B", 100, .fantasy, .unrated⟩ : Book).isLong == false
+#guard (⟨"Edge", "C", 300, .fantasy, .unrated⟩ : Book).isLong == false
 #guard ({ title := "A", author := "B", pages := 500, genre := .science } : Book).isWorthReading == true
-#guard (⟨"A", "B", 100, .fiction, .stars 5⟩ : Book).isWorthReading == true
-#guard ({ title := "A", author := "B", pages := 100, genre := .fiction } : Book).isWorthReading == false
-#guard Book.describe ⟨"Test", "Author", 100, .fiction, .unrated⟩
-    == "Test by Author (100 pages, fiction)"
-#guard ((⟨"X", "Y", 100, .fiction, .unrated⟩ : Book).withRating (.stars 4)).rating.toNat == 4
+#guard (⟨"A", "B", 100, .fantasy, .stars 5⟩ : Book).isWorthReading == true
+#guard ({ title := "A", author := "B", pages := 100, genre := .fantasy } : Book).isWorthReading == false
+#guard (⟨"A", "B", 500, .fantasy, .stars 2⟩ : Book).isWorthReading == false
+#guard Book.describe ⟨"Test", "Author", 100, .fantasy, .unrated⟩
+    == "Test by Author (100 pages, fantasy)"
+#guard ((⟨"X", "Y", 100, .fantasy, .unrated⟩ : Book).withRating (.stars 4)).rating.toNat == 4
 #guard (findBook "Cosmos" catalog).isSome == true
 #guard (findBook "Moby Dick" catalog).isSome == false
 #guard (findBook "Dune" catalog).map (·.pages) == some 412
 #guard (booksOfGenre .science catalog).length == 2
 #guard (booksOfGenre .fantasy catalog).length == 1
-#guard titles catalog == ["Dune", "1984", "Cosmos", "Hobbit", "Sapiens"]
+#guard titles catalog == ["Dune", "Sapiens", "Cosmos", "The Hobbit", "SPQR"]
 #guard totalPages [] == 0
-#guard totalPages catalog == 1858
-#guard repeatStr "ab" 3 == "ababab"
-#guard repeatStr "x" 0 == ""
+#guard totalPages catalog == 2136
+#guard starBar (.stars 3) == "***"
+#guard starBar (.stars 1) == "*"
+#guard starBar (.stars 0) == ""
+#guard starBar .unrated == ""
