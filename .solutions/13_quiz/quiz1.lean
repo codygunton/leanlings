@@ -73,6 +73,7 @@ def starBar : Rating → String
 
 -- Proofs
 
+--- TODO: suggest using introducing unfold in the earlier sections to aid with using proof engine
 theorem zero_not_long (b : Book) (h : b.pages = 0) :
     b.isLong = false := by
   simp [Book.isLong, h]
@@ -89,6 +90,8 @@ theorem science_ne_history : Genre.science ≠ Genre.history := by
   intro h
   nomatch h
 
+/- TODO: cases notion not introduced before here. Either add less or consider removing -/
+/- by keyword to allow solving without tactics / with an explicit function -/
 theorem genre_cases (g : Genre) :
     g = .science ∨ g = .history ∨ g = .fantasy := by
   cases g with

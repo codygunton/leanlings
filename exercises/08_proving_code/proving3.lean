@@ -19,11 +19,13 @@ def double (n : Nat) : Nat := n + n
 
 -- double n is the same as 2 * n
 theorem double_is_mul2 (n : Nat) : double n = 2 * n := by
-  sorry
+  simp [double];
+  omega
 
 -- double preserves the ≤ ordering
 theorem double_le (a b : Nat) (h : a ≤ b) : double a ≤ double b := by
-  sorry
+  simp [double];
+  omega
 
 -- Composing double with itself
 theorem double_double (n : Nat) : double (double n) = 4 * n := by

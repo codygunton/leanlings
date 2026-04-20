@@ -17,7 +17,13 @@ that builds up the result :
   -/
 
 def reverse (l : List α) : List α :=
-  sorry
+  doit l []
+where
+    doit : List α -> List α -> List α
+      | [], res => res
+      | val :: l, res => doit l ([val] ++ res)
+
+#eval reverse [1,2,3]
 
 -- Don't change below this line!
 #guard reverse [1, 2, 3] == [3, 2, 1]

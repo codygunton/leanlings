@@ -21,15 +21,15 @@ def triple (n : Nat) : Nat := 3 * n
 
 -- Concrete values: `rfl` still works inside `by`
 theorem triple_0 : triple 0 = 0 := by
-  sorry
+  rfl
 
 -- Variable n: unfold the definition with `simp [triple]`
 theorem triple_def (n : Nat) : triple n = 3 * n := by
-  sorry
+  simp [triple]
 
 -- Arithmetic with variables: try `omega`
 theorem zero_add (n : Nat) : 0 + n = n := by
-  sorry
+  omega
 
 -- Combine unfolding + arithmetic: `simp [double]; omega`
 theorem double_add (a b : Nat) : double (a + b) = double a + double b := by

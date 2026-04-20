@@ -27,10 +27,12 @@ inductive Expr where
 deriving Repr
 
 -- Return true if the expression is a literal number
-def isNum : Expr → Bool := sorry
+def isNum : Expr → Bool
+| .num _ => true
+| _ => false
 
 -- Construct the expression representing (2 + 3) * 4
-def sampleExpr : Expr := sorry
+def sampleExpr : Expr := .mul (.add (.num 2) (.num 3)) (.num 4)
 
 -- Don't change below this line!
 #guard isNum (.num 5) == true

@@ -21,15 +21,15 @@ Powerful automation tactics that can close goals in one step :
 
 -- Use `omega` — this is linear arithmetic
 theorem arith1 : 2 + 3 = 5 := by
-  sorry
+  omega
 
 -- Use `omega` — arithmetic with a variable
 theorem arith2 (n : Nat) : n + 0 = n := by
-  sorry
+  omega
 
 -- Use `simp` — this involves list operations, not arithmetic
 theorem simp_example (l : List Nat) : l ++ [] = l := by
-  sorry
+  simp
 
 -- Use `decide` — a concrete comparison (no variables)
 theorem decide_example : 2 < 5 := by

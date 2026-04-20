@@ -23,8 +23,7 @@ def myAdd : Nat → Nat → Nat
 | n, m + 1 => (myAdd n m) + 1
 
 -- This is true by definition — `rfl` suffices
-theorem myAdd_zero (n : Nat) : myAdd n 0 = n := by
-  sorry
+theorem myAdd_zero (n : Nat) : myAdd n 0 = n := rfl
 
 -- This requires induction on `n`
 theorem myAdd_zero_left (n : Nat) : myAdd 0 n = n := by

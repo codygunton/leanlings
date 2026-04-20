@@ -16,14 +16,18 @@ Two essential commands for learning Lean interactively :
   -/
 
 -- Hint: try `#eval 2 ^ 10` in your editor
-def powerOfTwo : Nat := sorry
+#eval 2 ^ 10
+def powerOfTwo : Nat := 1024
 
 -- Hint: try `#eval "hello".length`
-def helloLength : Nat := sorry
+#eval "hello".length
+def helloLength : Nat := 5
 
 -- Hint: try `#eval (List.range 5).length`
 -- List.range 5 produces [0, 1, 2, 3, 4]
-def rangeLength : Nat := sorry
+#eval (List.range 5).length
+#check "hello"
+def rangeLength : Nat := 5
 
 -- Don't change below this line!
 #guard powerOfTwo == 1024

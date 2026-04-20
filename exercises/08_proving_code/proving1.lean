@@ -18,13 +18,13 @@ def double (n : Nat) : Nat := n + n
 def isEven (n : Nat) : Bool := n % 2 == 0
 
 -- Lean computes: double 3 = 3 + 3 = 6
-theorem double_3 : double 3 = 6 := sorry
+theorem double_3 : double 3 = 6 := rfl
 
 -- Lean computes: double 0 = 0 + 0 = 0
-theorem double_0 : double 0 = 0 := sorry
+theorem double_0 : double 0 = 0 := rfl
 
 -- Lean computes: isEven 4 = (4 % 2 == 0) = (0 == 0) = true
-theorem four_is_even : isEven 4 = true := sorry
+theorem four_is_even : isEven 4 = true := rfl
 
 -- Both sides compute to 4, so they're equal
 theorem double_2_is_add : double 2 = 2 + 2 := sorry

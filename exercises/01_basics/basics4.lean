@@ -11,13 +11,13 @@ Operators :
   -/
 
 -- true AND true is true
-def and_result : Bool := sorry
+def and_result : Bool := true && true
 
 -- true OR false is true
-def or_result : Bool := sorry
+def or_result : Bool := true || false
 
 -- NOT false is true
-def not_result : Bool := sorry
+def not_result : Bool := !false
 
 -- Don't change below this line!
 #guard and_result == true

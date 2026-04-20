@@ -8,7 +8,7 @@ The body is an expression that can use the parameters.
 TODO : Implement `triple` so it returns three times its input.
 -/
 
-def triple (n : Nat) : Nat := sorry
+def triple (n : Nat) : Nat := 3 * n
 
 -- Don't change below this line!
 #guard triple 0 == 0

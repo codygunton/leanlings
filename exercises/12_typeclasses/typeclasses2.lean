@@ -26,11 +26,19 @@ class Describable (α : Type) where
 
 -- TODO: Implement BEq for Suit
 instance : BEq Suit where
-  beq := sorry
+  beq := fun
+  | .hearts => fun | .hearts => true | _ => false
+  | .diamonds => fun | .diamonds => true | _ => false
+  | .clubs => fun | .clubs => true | _ => false
+  | .spades => fun | .spades => true | _ => false
 
 -- TODO: Implement Describable for Suit
 instance : Describable Suit where
-  describe := sorry
+  describe := fun
+  | .hearts => "hearts"
+  | .diamonds => "diamonds"
+  | .clubs => "clubs"
+  | .spades => "spades"
 
 -- Don't change below this line!
 #guard (Suit.hearts == Suit.hearts) == true

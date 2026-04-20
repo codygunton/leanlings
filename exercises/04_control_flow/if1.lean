@@ -15,7 +15,7 @@ You can negate an Int with `-n`.
 TODO : Implement `abs` that returns the absolute value of an integer.
 -/
 
-def abs (n : Int) : Int := sorry
+def abs (n : Int) : Int := if n < 0 then -n else n
 
 -- Don't change below this line!
 #guard abs 5 == 5

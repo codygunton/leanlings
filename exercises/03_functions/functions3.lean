@@ -14,16 +14,16 @@ Anonymous functions (lambdas) use the `fun` keyword :
     -/
 
 -- Use `fun n => ...` to write an anonymous function that doubles its input
-def doubler : Nat → Nat := fun n => sorry
+def doubler : Nat → Nat := fun n => n + n
 
 -- Note: Use `==` (not `=`) for boolean equality.
 -- `==` returns Bool, while `=` creates a Prop (proposition).
 
 -- Use `fun n => ...` to check if a number is zero
-def isZero : Nat → Bool := fun n => sorry
+def isZero : Nat → Bool := fun n => n==0
 
 -- Now use the `·` shorthand: (· + 1) means fun x => x + 1
-def tripler : Nat → Nat := sorry
+def tripler : Nat → Nat := (· * 3)
 
 -- Don't change below this line!
 #guard doubler 5 == 10

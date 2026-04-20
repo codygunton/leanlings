@@ -16,7 +16,9 @@
     -/
 
 def getOrDefault (opt : Option Nat) (default : Nat) : Nat :=
-  sorry
+  match opt with
+  | some x => x
+  | none => default
 
 -- Don't change below this line!
 #guard getOrDefault (some 42) 0 == 42

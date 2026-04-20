@@ -11,7 +11,7 @@ For example :
 TODO : Define `square` that returns the square of a number.
 -/
 
-def square (n : Nat) : Nat := sorry
+def square (n : Nat) : Nat := n ^ 2
 
 -- Don't change below this line!
 #guard square 0 == 0

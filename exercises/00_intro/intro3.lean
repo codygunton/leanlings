@@ -17,15 +17,15 @@ Common errors :
 
 -- Error: "type mismatch" — "yes" is a String, but Bool is expected.
 -- Fix: change the value to a Bool.
-def isReady : Bool := "yes"
+def isReady : Bool := true
 
 -- Error: "type mismatch" — true is a Bool, but Nat is expected.
 -- Fix: change the value to a Nat.
-def count : Nat := true
+def count : Nat := 1
 
 -- Error: "type mismatch" — "hello" is a String, but Nat is expected.
 -- Fix: this time, change the TYPE annotation to match the value.
-def message : Nat := "hello"
+def message : String := "hello"
 
 -- Don't change below this line!
 #guard isReady == true

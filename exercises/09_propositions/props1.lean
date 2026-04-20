@@ -19,13 +19,13 @@ TODO : Provide proofs for each theorem.
 -/
 
 -- True is trivially true
-theorem obvious : True := sorry
+theorem obvious : True := trivial
 
 -- 1 + 1 is definitionally equal to 2
-theorem one_plus_one : 1 + 1 = 2 := sorry
+theorem one_plus_one : 1 + 1 = 2 := rfl
 
 -- String concatenation is definitionally computed
-theorem hello_lean : "Hello, " ++ "Lean!" = "Hello, Lean!" := sorry
+theorem hello_lean : "Hello, " ++ "Lean!" = "Hello, Lean!" := rfl
 
 -- From False, anything follows (explosion / ex falso)
 -- Hint: use `nomatch h` or `h.elim`

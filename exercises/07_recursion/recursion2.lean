@@ -12,7 +12,9 @@ TODO : Implement `sum` that adds all elements of a list.
         sum [1, 2, 3] = 6
 -/
 
-def sum : List Nat → Nat := sorry
+def sum : List Nat → Nat
+| [] => 0
+| l :: r => l + sum r
 
 -- Don't change below this line!
 #guard sum [] == 0

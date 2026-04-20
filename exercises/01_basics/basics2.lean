@@ -8,11 +8,11 @@ Lean has several built-in types :
   TODO : Replace each `sorry` with a value of the correct type.
   -/
 
-def myNat : Nat := sorry
+def myNat : Nat := 1
 
-def myString : String := sorry
+def myString : String := "hell"
 
-def myBool : Bool := sorry
+def myBool : Bool := true
 
 -- Don't change below this line!
 #guard myString.length > 0

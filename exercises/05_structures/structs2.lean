@@ -17,13 +17,13 @@ structure Person where
   age : Nat
 deriving BEq -- auto-generates `==`; you'll learn how in unit 12
 
-def fullName (p : Person) : String := sorry
+def fullName (p : Person) : String := p.firstName ++ " " ++ p.lastName
 
-def isAdult (p : Person) : Bool := sorry
+def isAdult (p : Person) : Bool := p.age >= 18
 
 -- Return a new Person with age incremented by 1.
 -- Use `{ p with ... }` to copy all fields except the one you change.
-def birthday (p : Person) : Person := sorry
+def birthday (p : Person) : Person := {p with age := p.age+1}
 
 -- Don't change below this line!
 #guard fullName { firstName := "Jane", lastName := "Doe", age := 25 } == "Jane Doe"

@@ -13,7 +13,7 @@ TODO : Implement `average` that returns the average of two
         natural numbers (integer division is fine).
 -/
 
-def average (a b : Nat) : Nat := sorry
+def average (a b : Nat) : Nat := (a + b)/2
 
 -- Don't change below this line!
 #guard average 4 6 == 5

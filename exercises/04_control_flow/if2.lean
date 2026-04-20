@@ -12,7 +12,10 @@ You can chain `if/then/else` :
     "negative" if n < 0
     -/
 
-def classify (n : Int) : String := sorry
+def classify (n : Int) : String :=
+  if n > 0 then "positive" else
+  if n < 0 then "negative" else
+    "zero"
 
 -- Don't change below this line!
 #guard classify 5 == "positive"

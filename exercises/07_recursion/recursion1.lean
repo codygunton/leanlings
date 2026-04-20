@@ -15,7 +15,9 @@ TODO : Implement `factorial`.
         factorial 5 = 120
 -/
 
-def factorial : Nat → Nat := sorry
+def factorial : Nat → Nat
+| 0 => 1
+| n + 1 => (n+1) * factorial n
 
 -- Don't change below this line!
 #guard factorial 0 == 1

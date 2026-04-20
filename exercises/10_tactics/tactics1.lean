@@ -19,11 +19,13 @@ In the previous module, you wrote proofs as expressions
 
 -- Introduce the hypothesis, then provide it as the proof
 theorem self_implication (P : Prop) : P → P := by
-  sorry
+  intro p
+  exact p
 
 -- Introduce both hypotheses, then use the right one
 theorem use_second (P Q : Prop) : P → Q → Q := by
-  sorry
+  intro p q
+  exact q
 
 -- Function composition
 theorem compose (P Q R : Prop) : (P → Q) → (Q → R) → P → R := by

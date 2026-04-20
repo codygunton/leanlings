@@ -11,7 +11,7 @@ Welcome to Leanlings! Each exercise is a Lean file with
   TODO : Replace `sorry` with the string "Hello, Lean!"
   -/
 
-def greeting : String := sorry
+def greeting : String := "Hello, Lean!"
 
 -- Don't change below this line!
 #guard greeting == "Hello, Lean!"

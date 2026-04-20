@@ -34,10 +34,24 @@ inductive Expr where
 deriving Repr
 
 -- Evaluate the expression tree to a Nat
-def eval : Expr → Nat := sorry
+def eval : Expr → Nat
+| .num n => n
+| .add a b => (eval a) + (eval b)
+| .mul a b => (eval a) * (eval b)
 
--- Count how many `num` leaves are in the expression
-def countNums : Expr → Nat := sorry
+/- -- Count how many `num` leaves are in the expression -/
+/- def countNums (e: Expr) : Nat := -/
+/-   doit e 0 -/
+/-   where -/
+/-     doit : Expr -> Nat -> Nat -/
+/-       | .num _, acc => acc + 1 -/
+/-       | .add a b, acc => acc + (doit a acc) + (doit b acc) -/
+/-       | .mul a b, acc => acc + (doit a acc) + (doit b acc) -/
+
+def countNums : Expr → Nat
+| .num _ => 1
+| .add a b => countNums a + countNums b
+| .mul a b => countNums a + countNums b
 
 -- Don't change below this line!
 #guard eval (.num 7) == 7

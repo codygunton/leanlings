@@ -24,13 +24,13 @@ structure RGBColor where
 deriving Repr, BEq
 
 -- Pure red: red=255, green and blue use defaults
-def pureRed : RGBColor := sorry
+def pureRed : RGBColor := {red := 255}
 
 -- White: all channels at 255
-def white : RGBColor := sorry
+def white : RGBColor := ⟨255, 255, 255⟩
 
 -- Black: use all defaults
-def black : RGBColor := sorry
+def black : RGBColor := {}
 
 -- Don't change below this line!
 #guard pureRed.red == 255

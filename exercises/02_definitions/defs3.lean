@@ -13,7 +13,9 @@
 -/
 
 def difference_of_squares : Nat :=
-  sorry
+  let a := 10
+  let b := 3
+  (a + b) * (a - b)
 
 -- Don't change below this line!
 #guard difference_of_squares == 91
