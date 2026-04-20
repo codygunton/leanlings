@@ -1,10 +1,10 @@
 /- # Proving Code 3: Proving General Properties
 
-  You've proved facts about specific values and about
-  variables. Now let's prove properties that combine
-  function definitions with arithmetic reasoning.
+You've proved facts about specific values and about
+variables. Now let's prove properties that combine
+function definitions with arithmetic reasoning.
 
-  Strategy:
+Strategy :
   1. `simp [f]` to unfold your function's definition
   2. `omega` to handle the resulting arithmetic
 
@@ -12,8 +12,8 @@
   propositions — but the tactics are the same ones
   you've just learned!
 
-  TODO: Complete the proofs.
--/
+  TODO : Complete the proofs.
+  -/
 
 def double (n : Nat) : Nat := n + n
 

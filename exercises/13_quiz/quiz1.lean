@@ -1,10 +1,10 @@
 /- # Quiz 1: Library Catalog
 
-  Build a small library catalog system! This quiz combines
-  concepts from the first twelve units. There are no hints —
-  you have all the tools you need.
+Build a small library catalog system! This quiz combines
+concepts from the first twelve units. There are no hints —
+you have all the tools you need.
 
-  TODO: Complete all definitions and proofs.
+TODO : Complete all definitions and proofs.
 -/
 
 -- =============================================
@@ -17,20 +17,20 @@ inductive Genre where
   | science
   | history
   | fantasy
-  deriving Repr
+deriving Repr
 
 inductive Rating where
   | stars (n : Nat)
   | unrated
-  deriving Repr
+deriving Repr
 
 structure Book where
-  title  : String
+  title : String
   author : String
-  pages  : Nat
-  genre  : Genre
+  pages : Nat
+  genre : Genre
   rating : Rating := .unrated
-  deriving Repr
+deriving Repr
 
 -- 1. Implement BEq for Genre.
 instance : BEq Genre where
@@ -91,17 +91,17 @@ def starBar : Rating → String := sorry
 -- 14. A book with 0 pages is not long.
 theorem zero_not_long (b : Book) (h : b.pages = 0) :
     b.isLong = false := by
-  sorry
+    sorry
 
 -- 15. withRating gives back the rating it was given.
 theorem withRating_rating (b : Book) (r : Rating) :
     (b.withRating r).rating = r := by
-  sorry
+    sorry
 
 -- 16. An unrated book has a star count of 0.
 theorem unrated_zero_stars (b : Book) (h : b.rating = .unrated) :
     b.rating.toNat = 0 := by
-  sorry
+    sorry
 
 -- 17. Science and history are different genres.
 theorem science_ne_history : Genre.science ≠ Genre.history := by
@@ -110,26 +110,26 @@ theorem science_ne_history : Genre.science ≠ Genre.history := by
 -- 18. Every genre is science, history, or fantasy.
 theorem genre_cases (g : Genre) :
     g = .science ∨ g = .history ∨ g = .fantasy := by
-  sorry
+    sorry
 
 -- For the induction proofs below:
 def pageCount : List Book → Nat
-  | [] => 0
-  | b :: bs => b.pages + pageCount bs
+| [] => 0
+| b :: bs => b.pages + pageCount bs
 
 def bookTitles : List Book → List String
-  | [] => []
-  | b :: bs => b.title :: bookTitles bs
+| [] => []
+| b :: bs => b.title :: bookTitles bs
 
 -- 19. pageCount distributes over append.
 theorem pageCount_append (l1 l2 : List Book) :
     pageCount (l1 ++ l2) = pageCount l1 + pageCount l2 := by
-  sorry
+    sorry
 
 -- 20. bookTitles distributes over append.
 theorem bookTitles_append (l1 l2 : List Book) :
     bookTitles (l1 ++ l2) = bookTitles l1 ++ bookTitles l2 := by
-  sorry
+    sorry
 
 -- =============================================
 -- Don't change below this line!
@@ -161,9 +161,11 @@ def catalog : List Book := [
 #guard (⟨"Big", "A", 500, .fantasy, .unrated⟩ : Book).isLong == true
 #guard (⟨"Small", "B", 100, .fantasy, .unrated⟩ : Book).isLong == false
 #guard (⟨"Edge", "C", 300, .fantasy, .unrated⟩ : Book).isLong == false
-#guard ({ title := "A", author := "B", pages := 500, genre := .science } : Book).isWorthReading == true
+#guard ({ title := "A", author := "B", pages := 500, genre :=
+  .science } : Book).isWorthReading == true
 #guard (⟨"A", "B", 100, .fantasy, .stars 5⟩ : Book).isWorthReading == true
-#guard ({ title := "A", author := "B", pages := 100, genre := .fantasy } : Book).isWorthReading == false
+#guard ({ title := "A", author := "B", pages := 100, genre :=
+  .fantasy } : Book).isWorthReading == false
 #guard (⟨"A", "B", 500, .fantasy, .stars 2⟩ : Book).isWorthReading == false
 #guard Book.describe ⟨"Test", "Author", 100, .fantasy, .unrated⟩
     == "Test by Author (100 pages, fantasy)"

@@ -1,7 +1,7 @@
 /- # Inductive Types 3: Recursive Types
 
-  Inductive types can be recursive — a constructor can
-  refer to the type being defined:
+Inductive types can be recursive — a constructor can
+refer to the type being defined :
 
     inductive Expr where
       | num (n : Nat)
@@ -11,20 +11,20 @@
   `add` and `mul` each contain two sub-expressions of type `Expr`.
 
   You can still pattern match on the top-level constructor
-  without recursion:
+  without recursion :
 
     def isAdd : Expr → Bool
       | .add _ _ => true
-      | _        => false
+      | _ => false
 
-  TODO: Implement `isNum` and construct a sample expression.
+TODO : Implement `isNum` and construct a sample expression.
 -/
 
 inductive Expr where
   | num (n : Nat)
   | add (a b : Expr)
   | mul (a b : Expr)
-  deriving Repr
+deriving Repr
 
 -- Return true if the expression is a literal number
 def isNum : Expr → Bool := sorry

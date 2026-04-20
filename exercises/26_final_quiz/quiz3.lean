@@ -1,11 +1,11 @@
 /- # Final Quiz: The Complete Picture
 
-  This capstone exercise tests everything you've learned:
+This capstone exercise tests everything you've learned :
   recursive types, structural recursion, induction proofs,
   existentials, iff-proofs, and tactic automation.
 
-  TODO: Complete all definitions and proofs.
--/
+  TODO : Complete all definitions and proofs.
+  -/
 
 -- =============================================
 -- Part 1: Types & Functions (Units 6, 7)
@@ -15,7 +15,7 @@
 inductive Tree (α : Type) where
   | leaf : Tree α
   | node (left : Tree α) (value : α) (right : Tree α) : Tree α
-  deriving Repr, BEq
+deriving Repr, BEq
 
 -- 1. Count the nodes in a tree (recursive).
 def Tree.size : Tree α → Nat := sorry
@@ -54,7 +54,7 @@ theorem sample_size : sampleTree.size = 3 := by
 --    Try `simp [size]` then `omega`.
 theorem Tree.size_node_pos (l : Tree α) (v : α) (r : Tree α) :
     (Tree.node l v r).size ≥ 1 := by
-  sorry
+    sorry
 
 -- =============================================
 -- Part 3: Induction (Units 11, 24, 25)
@@ -91,7 +91,7 @@ theorem Tree.depth_le_size (t : Tree α) : t.depth ≤ t.size := by
 --     Provide a witness and prove it's in the list.
 theorem Tree.node_has_element (l : Tree α) (v : α) (r : Tree α) :
     ∃ x, x ∈ (Tree.node l v r).toList := by
-  sorry
+    sorry
 
 -- 16. A tree has size 0 if and only if it is a leaf.
 --     Use `constructor` to split the ↔ into two directions.

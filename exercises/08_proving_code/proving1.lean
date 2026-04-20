@@ -1,17 +1,17 @@
 /- # Proving Code 1: Your First Proofs
 
-  In Lean, you can *prove* things about your code.
-  A `theorem` states a fact, and you must provide a proof.
+In Lean, you can *prove* things about your code.
+A `theorem` states a fact, and you must provide a proof.
 
-  When both sides of an equation compute to the same value,
-  `rfl` ("reflexivity") is a proof. Lean evaluates both
-  sides and checks they match — no cleverness needed.
+When both sides of an equation compute to the same value,
+`rfl` ("reflexivity") is a proof. Lean evaluates both
+sides and checks they match — no cleverness needed.
 
-  This is the bridge between programming and proving:
+This is the bridge between programming and proving :
   functions you write become things you can reason about.
 
-  TODO: Replace each `sorry` with `rfl`.
--/
+  TODO : Replace each `sorry` with `rfl`.
+  -/
 
 def double (n : Nat) : Nat := n + n
 

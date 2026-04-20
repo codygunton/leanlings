@@ -1,12 +1,12 @@
 /- # Tactics 2: apply and constructor
 
-  • `apply f` — if the goal is `B` and `f : A → B`,
+• `apply f` — if the goal is `B` and `f : A → B`,
     changes the goal to `A` (working backwards).
 
-  • `constructor` — splits a goal `A ∧ B` into two subgoals.
+• `constructor` — splits a goal `A ∧ B` into two subgoals.
     Also works for other multi-constructor types.
 
-  TODO: Complete the proofs.
+TODO : Complete the proofs.
 -/
 
 -- Use `apply` to work backwards

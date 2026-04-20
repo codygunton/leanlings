@@ -1,6 +1,6 @@
 /- # List Proofs 1: Append Properties
 
-  Lists support many useful lemmas:
+Lists support many useful lemmas :
   - `List.nil_append` : [] ++ l = l
   - `List.append_nil` : l ++ [] = l
   - `List.append_assoc` : (a ++ b) ++ c = a ++ (b ++ c)
@@ -8,8 +8,8 @@
 
   `simp` knows most of these, so it can often close the goal.
 
-  TODO: Prove these about the standard List operations.
--/
+  TODO : Prove these about the standard List operations.
+  -/
 
 -- Appending nil on the right is identity
 theorem append_nil' (l : List α) : l ++ [] = l := by

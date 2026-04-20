@@ -1,8 +1,8 @@
 /- # Definitions 1: Exploring with #check and #eval
 
-  Two essential commands for learning Lean interactively:
+Two essential commands for learning Lean interactively :
 
-  • `#eval expr`  — evaluates an expression and prints the result
+  • `#eval expr` — evaluates an expression and prints the result
   • `#check expr` — shows the type of an expression
 
   Try them! Add `#eval 2 + 3` anywhere in this file
@@ -11,9 +11,9 @@
 
   These are your best tools for experimenting with Lean.
 
-  TODO: Use `#eval` in your editor to discover the answers,
+  TODO : Use `#eval` in your editor to discover the answers,
         then fill them in.
--/
+  -/
 
 -- Hint: try `#eval 2 ^ 10` in your editor
 def powerOfTwo : Nat := sorry

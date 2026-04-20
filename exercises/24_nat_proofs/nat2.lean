@@ -1,6 +1,6 @@
 /- # Nat Proofs 2: Order Properties
 
-  Nat has a natural ordering. Useful lemmas:
+Nat has a natural ordering. Useful lemmas :
   - `Nat.le_refl` : n <= n
   - `Nat.le_trans` : a <= b -> b <= c -> a <= c
   - `Nat.lt_of_lt_of_le` : a < b -> b <= c -> a < c
@@ -8,8 +8,8 @@
   `omega` can prove most linear arithmetic goals involving
   addition, subtraction, and comparisons.
 
-  TODO: Prove these ordering properties.
--/
+  TODO : Prove these ordering properties.
+  -/
 
 -- Transitivity of <=
 theorem my_le_trans (a b c : Nat) (h1 : a ≤ b) (h2 : b ≤ c) : a ≤ c := by
