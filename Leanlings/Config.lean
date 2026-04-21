@@ -115,6 +115,14 @@ def exercises : Array Exercise := #[
   { name := "quiz1", dir := "13_quiz",
     hint := "This quiz has no hints — read each comment carefully.\nYou have all the tools: structs, inductives, pattern matching,\nrecursion, higher-order functions, typeclasses, and tactic proofs." },
 
+  -- 13b_monads
+  { name := "monads1", dir := "13b_monads",
+    hint := "Pattern match on the `Option` to handle `some` and `none`.\nFor `chainDivide`, pass the result of one `optionBind` into another." },
+  { name := "monads2", dir := "13b_monads",
+    hint := "Pattern match on the `Except` to handle `.ok` and `.error`.\nFor `validate`, chain `checkPositive` into `checkSmall` with `exceptBind`." },
+  { name := "monads3", dir := "13b_monads",
+    hint := "`>>=` is the bind operator: `x >>= fun v => ...`\nIt works like your manual bind, but uses the type class instance." },
+
   -- 14_do_notation
   { name := "do1", dir := "14_do_notation",
     hint := "Use `←` to extract values from Option in a `do` block.\nIf any step returns `none`, the whole block returns `none`." },

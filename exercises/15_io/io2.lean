@@ -19,7 +19,12 @@ IO actions can be combined in `do` blocks :
 
 -- Print numbers from n down to 1, each on its own line
 -- Use a for loop with List.range
-def printCountdown (n : Nat) : IO Unit := sorry
+def printCountdown (n : Nat) : IO Unit := do
+  let mut left := n
+  while left > 1 do
+    IO.print s!"{left} "
+    left := left - 1
+  IO.println "1!"
 
 def main : IO Unit := do
   printCountdown 5

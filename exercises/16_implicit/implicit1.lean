@@ -17,13 +17,15 @@ Without implicit args, you'd have to write :
   -/
 
 -- Return the first element of a pair
-def myFst {α β : Type} (p : α × β) : α := sorry
+-- TODO: I don't think this notation is introduced?
+def myFst {α β : Type} (p : α × β) : α := p.1
 
 -- Swap the elements of a pair
-def mySwap {α β : Type} (p : α × β) : β × α := sorry
+def mySwap {α β : Type} (p : α × β) : β × α := (p.2, p.1)
 
 -- Apply a function to both elements of a pair
-def mapPair {α β γ : Type} (f : α → γ) (g : β → γ) (p : α × β) : γ × γ := sorry
+def mapPair {α β γ : Type} (f : α → γ) (g : β → γ) (p : α × β) : γ × γ :=
+  (f p.1, g p.2)
 
 -- Don't change below this line!
 #guard myFst (1, "hello") == 1

@@ -19,7 +19,9 @@ has type `IO Unit` :
   -/
 
 -- Print "Hello, {name}!" using IO.println and s!"..."
-def greet (name : String) : IO Unit := sorry
+def greet (name : String) : IO Unit := IO.println s!"Hello, {name}"
 
 def main : IO Unit := do
-  sorry
+  let name := "Lean"
+  IO.println s!"Hello, {name}"
+  IO.println "Goodbye"
