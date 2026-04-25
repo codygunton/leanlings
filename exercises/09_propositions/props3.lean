@@ -25,4 +25,4 @@ theorem modus_ponens (P Q : Prop) : P → (P → Q) → Q :=
 
 -- From a contradiction (P and ¬P), we can prove anything
 theorem contradiction (P Q : Prop) : P → ¬P → Q :=
-  sorry
+  fun p np => (np p).elim

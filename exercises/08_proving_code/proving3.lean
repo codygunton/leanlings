@@ -29,4 +29,5 @@ theorem double_le (a b : Nat) (h : a ≤ b) : double a ≤ double b := by
 
 -- Composing double with itself
 theorem double_double (n : Nat) : double (double n) = 4 * n := by
-  sorry
+  simp [double]
+  omega

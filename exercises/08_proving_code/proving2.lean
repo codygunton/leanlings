@@ -33,4 +33,5 @@ theorem zero_add (n : Nat) : 0 + n = n := by
 
 -- Combine unfolding + arithmetic: `simp [double]; omega`
 theorem double_add (a b : Nat) : double (a + b) = double a + double b := by
-  sorry
+  unfold double
+  omega

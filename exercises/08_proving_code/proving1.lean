@@ -27,4 +27,4 @@ theorem double_0 : double 0 = 0 := rfl
 theorem four_is_even : isEven 4 = true := rfl
 
 -- Both sides compute to 4, so they're equal
-theorem double_2_is_add : double 2 = 2 + 2 := sorry
+theorem double_2_is_add : double 2 = 2 + 2 := rfl

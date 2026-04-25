@@ -29,4 +29,4 @@ theorem hello_lean : "Hello, " ++ "Lean!" = "Hello, Lean!" := rfl
 
 -- From False, anything follows (explosion / ex falso)
 -- Hint: use `nomatch h` or `h.elim`
-theorem false_implies_anything (h : False) : 2 + 2 = 5 := sorry
+theorem false_implies_anything (h : False) : 2 + 2 = 5 := nomatch h

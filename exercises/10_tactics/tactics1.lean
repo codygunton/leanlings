@@ -29,4 +29,6 @@ theorem use_second (P Q : Prop) : P → Q → Q := by
 
 -- Function composition
 theorem compose (P Q R : Prop) : (P → Q) → (Q → R) → P → R := by
-  sorry
+  intro f
+  intro g
+  exact g ∘ f

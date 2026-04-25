@@ -122,17 +122,19 @@ def starBar : Rating → String :=
 -- 14. A book with 0 pages is not long.
 theorem zero_not_long (b : Book) (h : b.pages = 0) :
     b.isLong = false := by
-    sorry
+    unfold Book.isLong
+    simp
+    omega
 
 -- 15. withRating gives back the rating it was given.
 theorem withRating_rating (b : Book) (r : Rating) :
     (b.withRating r).rating = r := by
-    sorry
+    rfl
 
 -- 16. An unrated book has a star count of 0.
 theorem unrated_zero_stars (b : Book) (h : b.rating = .unrated) :
-    b.rating.toNat = 0 := by
-    sorry
+    b.rating.toNat = 0 := by simp [Rating.toNat, h]
+
 
 -- 17. Science and history are different genres.
 theorem science_ne_history : Genre.science ≠ Genre.history := by
@@ -142,9 +144,14 @@ theorem science_ne_history : Genre.science ≠ Genre.history := by
 
 
 -- 18. Every genre is science, history, or fantasy.
+/- TODO: cases notion not introduced before here. Either add less or consider removing -/
+/- by keyword to allow solving without tactics / with an explicit function -/
 theorem genre_cases (g : Genre) :
     g = .science ∨ g = .history ∨ g = .fantasy := by
-    sorry
+  cases g with
+  | science => exact Or.inl rfl
+  | history => exact Or.inr (Or.inl rfl)
+  | fantasy => exact Or.inr (Or.inr rfl)
 
 -- For the induction proofs below:
 def pageCount : List Book → Nat
@@ -158,12 +165,18 @@ def bookTitles : List Book → List String
 -- 19. pageCount distributes over append.
 theorem pageCount_append (l1 l2 : List Book) :
     pageCount (l1 ++ l2) = pageCount l1 + pageCount l2 := by
-    sorry
+    induction l1 with
+    | nil => simp
+             trivial
+    | cons h t tih => simp[pageCount, tih]
+                      omega
 
     -- 20. bookTitles distributes over append.
 theorem bookTitles_append (l1 l2 : List Book) :
     bookTitles (l1 ++ l2) = bookTitles l1 ++ bookTitles l2 := by
-    sorry
+    induction l1 with
+    | nil => simp[bookTitles]
+    | cons h t tih => simp[bookTitles, tih]
 
 -- =============================================
 -- Don't change below this line!

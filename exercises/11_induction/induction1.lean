@@ -27,4 +27,6 @@ theorem myAdd_zero (n : Nat) : myAdd n 0 = n := rfl
 
 -- This requires induction on `n`
 theorem myAdd_zero_left (n : Nat) : myAdd 0 n = n := by
-  sorry
+  induction n with
+  | zero => trivial
+  | succ n ih => simp [myAdd, ih]

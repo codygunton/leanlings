@@ -33,4 +33,4 @@ theorem simp_example (l : List Nat) : l ++ [] = l := by
 
 -- Use `decide` — a concrete comparison (no variables)
 theorem decide_example : 2 < 5 := by
-  sorry
+  omega

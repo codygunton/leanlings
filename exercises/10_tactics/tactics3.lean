@@ -22,4 +22,4 @@ theorem rewrite_chain (a b c : Nat) (h1 : a = b) (h2 : b = c) : a = c := by
 
 -- Use backwards rewriting: replace b with a in the goal
 theorem rewrite_back (a b : Nat) (h : a = b) : b + 1 = a + 1 := by
-  sorry
+  rw [<-h]

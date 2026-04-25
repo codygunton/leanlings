@@ -28,4 +28,12 @@ deriving Repr, BEq
 
 -- TODO: Implement ToString for Color
 instance : ToString Color where
-  toString := sorry
+  /- toString := fun r => match r with  -/
+  /-  | .red => s!"Color: red" -/
+  /-  | .green => s!"Color: red" -/
+  /-  | .blue => s!"Color: red" -/
+  toString := fun
+   | .red => s!"Color: red"
+   | .green => s!"Color: green"
+   | .blue => s!"Color: blue"
+-- TODO: Implement ToString for Color

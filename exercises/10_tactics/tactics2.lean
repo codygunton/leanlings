@@ -31,4 +31,6 @@ theorem and_swap (P Q : Prop) (h : P ∧ Q) : Q ∧ P := by
 
 -- Combine constructor and apply
 theorem and_map (P Q R : Prop) (h : P ∧ Q) (f : Q → R) : P ∧ R := by
-  sorry
+  constructor
+  exact h.left
+  exact (f h.right)
