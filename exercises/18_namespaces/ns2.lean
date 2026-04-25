@@ -25,9 +25,13 @@ TODO : Complete the definitions in the section.
 section
 variable {α : Type} [BEq α]
 
-def myElem (x : α) : List α → Bool := sorry
+def myElem (x : α) : List α → Bool := fun
+  | [] => false
+  | a::as => if x == a then True else (myElem x as)
 
-def myRemoveAll (x : α) : List α → List α := sorry
+def myRemoveAll (x : α) : List α → List α := fun
+  | [] => []
+  | a::as => if x==a then (myRemoveAll x as) else a::(myRemoveAll x as)
 end
 
 -- Don't change below this line!

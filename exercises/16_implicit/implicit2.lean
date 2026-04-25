@@ -18,10 +18,17 @@ differently :
   -/
 
 -- Check if a list contains an element (needs BEq)
-def myContains [BEq α] (x : α) (l : List α) : Bool := sorry
+def myContains [BEq α] (x : α) (l : List α) : Bool :=
+  match l with
+  | [] => false
+  | a::as => if a == x then True else (myContains x as)
+
 
 -- Remove duplicates from a list (needs BEq)
-def myDedup [BEq α] (l : List α) : List α := sorry
+def myDedup [BEq α] (l : List α) : List α :=
+  match l with
+  | [] => []
+  | a::as => if (myContains a as) then myDedup as else a::(myDedup as)
 
 -- Don't change below this line!
 #guard myContains 3 [1, 2, 3] == true

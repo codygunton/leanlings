@@ -25,15 +25,16 @@ TODO : Complete the namespace and use `open`.
 -/
 
 namespace MyMath
-def square (n : Nat) : Nat := sorry
-def cube (n : Nat) : Nat := sorry
+def square (n : Nat) : Nat := n^2
+def cube (n : Nat) : Nat := n^3
 end MyMath
 
 -- Use `open MyMath in` before the body to access square and cube:
 --   def foo (...) : ... :=
 --     open MyMath in
 --     ...use square, cube without prefix...
-def sumOfPowers (n : Nat) : Nat := sorry
+def sumOfPowers (n : Nat) : Nat := open MyMath in
+    (square n) + (cube n)
 
 -- Don't change below this line!
 #guard MyMath.square 5 == 25

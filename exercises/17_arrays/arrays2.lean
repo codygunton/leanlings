@@ -18,10 +18,18 @@ Or use `Id.run do` with mutable arrays :
       -/
 
 -- The first 10 squares: #[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-def squares : Array Nat := sorry
+def squares : Array Nat := Id.run do
+  let mut res := #[]
+  for i in List.range 10 do
+    res := res.push (i^2)
+  res
 
 -- Reverse an array (without using Array.reverse)
-def myReverse (a : Array Nat) : Array Nat := sorry
+def myReverse (a : Array Nat) : Array Nat := Id.run do
+  let mut res := #[]
+  for x in a do
+    res := #[x] ++ res
+  res
 
 -- Don't change below this line!
 #guard squares == #[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
