@@ -19,10 +19,15 @@
       TODO : Prove these using `cases`.
       -/
 
+--- QUESTION: Nat is an inductive type? Does that mean its definition is thorugh induction? what is the def?
 -- A number is either zero or positive
 theorem zero_or_pos (n : Nat) : n = 0 ∨ n > 0 := by
-  sorry
+  cases n with
+  | zero => trivial
+  | succ m => omega
 
 -- Boolean and is commutative
 theorem bool_and_comm (a b : Bool) : (a && b) = (b && a) := by
-  sorry
+  cases a with
+  | true => simp
+  | false => simp

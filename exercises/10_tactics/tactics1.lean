@@ -7,11 +7,13 @@ In the previous module, you wrote proofs as expressions
 
   Enter tactic mode with `by` :
 
+    DOTIHS : shouldn't assume source = target here and improve exposition
     theorem foo : P → P := by
       intro h -- introduces hypothesis `h : P`
       exact h -- closes the goal with `h`
 
   • `intro h` moves the hypothesis from the goal into context
+
   • `exact term` closes the goal when `term` has the right type
 
   TODO : Complete the proofs using `intro` and `exact`.

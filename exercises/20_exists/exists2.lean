@@ -1,3 +1,6 @@
+-- what? solutions don't seem to have anything to do with the intro comment
+-- DOTHIS improve this
+
 /- # Existential Proofs 2: Destructuring
 
 Given `h : ∃ x, P x`, extract the witness with :
@@ -10,8 +13,8 @@ Given `h : ∃ x, P x`, extract the witness with :
 
 -- If there exists an even number in some property, we can extract it
 theorem exists_imp' (h : ∃ n : Nat, n + n = 10) : ∃ m : Nat, m = 5 := by
-  sorry
+  exact ⟨5, rfl⟩
 
 -- Existentials compose
 theorem exists_add (h : ∃ n : Nat, n > 0) : ∃ m : Nat, m > 1 := by
-  sorry
+  exact ⟨2, by omega⟩
