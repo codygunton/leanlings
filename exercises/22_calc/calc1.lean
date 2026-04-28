@@ -20,8 +20,8 @@
 theorem calc_rewrite (f : Nat → Nat) (h1 : f 0 = 3) (h2 : f 3 = 7) :
     f (f 0) = 7 := by
     calc f (f 0)
-      _ = f 3 := by sorry -- rewrites f 0 to 3
-      _ = 7 := by sorry -- rewrites f 3 to 7
+      _ = f 3 := by rw[h1] -- rewrites f 0 to 3
+      _ = 7 := by rw[h2] -- rewrites f 3 to 7
 
 -- Now write your own calc chain from scratch.
 -- Start with `calc f 5`, then chain `rw` steps through g.
@@ -30,4 +30,6 @@ theorem calc_chain (f g : Nat → Nat)
     (h1 : ∀ x, f x = g x + 1)
     (h2 : ∀ x, g x = x * 2) :
     f 5 = 11 := by
-    sorry
+    calc f 5
+      _ = g 5 + 1 := by rw[h1]
+      _ = 11 := by rw[h2]

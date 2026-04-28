@@ -24,9 +24,25 @@ def sumTo : Nat → Nat
 
 -- Gauss's formula: sumTo n = n * (n + 1) / 2
 -- Since we're using Nat (no fractions), prove the doubled version:
+-- QUESTION: this works but it's ugly, without pulling out any big hammers,
+-- how do i do this more systematically so that the goal becomes more an dmore simple?
+-- Also: what is the big hammer way?
 theorem sumTo_formula (n : Nat) : 2 * sumTo n = n * (n + 1) := by
-  sorry
+  induction n with
+  | zero => trivial
+  | succ n ih => rw [sumTo]
+                 rw [Nat.mul_add]
+                 simp [ih]
+                 rw [Nat.mul_add]
+                 rw [Nat.mul_add]
+                 rw [Nat.add_mul]
+                 rw [Nat.mul_add]
+                 rw [Nat.mul_add]
+                 omega
+
 
 -- Sum is monotone
 theorem sumTo_mono (n : Nat) : sumTo n ≤ sumTo (n + 1) := by
-  sorry
+  rw [sumTo]
+  simp
+

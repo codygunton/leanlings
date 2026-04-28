@@ -19,12 +19,12 @@ Useful tactics :
 
 -- Addition is commutative
 theorem my_add_comm (a b : Nat) : a + b = b + a := by
-  sorry
+  omega
 
 -- Addition is associative
 theorem my_add_assoc (a b c : Nat) : (a + b) + c = a + (b + c) := by
-  sorry
+  omega
 
 -- Zero is the identity for addition (both sides)
 theorem add_zero_both (n : Nat) : 0 + n = n ∧ n + 0 = n := by
-  sorry
+  omega

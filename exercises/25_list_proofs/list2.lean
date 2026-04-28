@@ -14,12 +14,12 @@ More list properties :
 -- Mapping preserves length
 theorem map_length (f : α → β) (l : List α) :
     (l.map f).length = l.length := by
-    sorry
+    rw [List.length_map]
 
 -- Mapping id does nothing
 theorem map_id' (l : List α) : l.map id = l := by
-  sorry
+  rw [List.map_id]
 
 -- Reverse preserves length
 theorem reverse_length (l : List α) : l.reverse.length = l.length := by
-  sorry
+  rw [List.length_reverse]

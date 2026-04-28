@@ -16,7 +16,7 @@
     -/
 
 --- QUESTION: I don't see the benefit of this over cases
--- Chain implications using intermediate steps
+-- Chain implications using intesorryrmediate steps
 theorem chain (P Q R : Prop) (hpq : P → Q) (hqr : Q → R) (hp : P) : R := by
   /- exact hqr (hpq hp) -/
   have hq : Q := hpq hp
