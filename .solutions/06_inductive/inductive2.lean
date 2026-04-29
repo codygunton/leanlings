@@ -5,9 +5,9 @@ inductive Result where
 
 def getValueOr (r : Result) (default : Nat) : Nat :=
   match r with
-  | .ok v    => v
+  | .ok v => v
   | .error _ => default
 
 def isOk : Result → Bool := fun
-  | .ok _    => true
+  | .ok _ => true
   | .error _ => false

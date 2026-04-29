@@ -1,18 +1,18 @@
 /- # Inductive Types 2: Data-Carrying Constructors
 
-  Constructors can carry data:
+  Constructors can carry data :
 
     inductive Shape where
       | circle (radius : Float)
       | rectangle (width : Float) (height : Float)
 
-  Pattern match to extract the data:
+  Pattern match to extract the data :
 
     match shape with
     | .circle r => ...
     | .rectangle w h => ...
 
-  You can also pattern match directly with `fun`:
+  You can also pattern match directly with `fun` :
 
     fun | .circle r => ... | .rectangle _ _ => ...
 
@@ -21,7 +21,7 @@
 
   The `.` prefix works when the expected type is known.
 
-  TODO: Implement `getValueOr` using `match`,
+  TODO : Implement `getValueOr` using `match`,
         and `isOk` using `fun` pattern matching.
 -/
 

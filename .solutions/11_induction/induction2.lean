@@ -1,5 +1,5 @@
 def myLength : List α → Nat
-  | []     => 0
+  | [] => 0
   | _ :: t => 1 + myLength t
 
 theorem myLength_append (l1 l2 : List α) :

@@ -6,7 +6,7 @@
   The code below has a type error — it tries to assign a String
   where a Nat (natural number) is expected.
 
-  TODO: Change the value to a number so it matches the type `Nat`.
+  TODO : Change the value to a number so it matches the type `Nat`.
         (Keep the type annotation as `Nat`.)
 -/
 

@@ -7,12 +7,12 @@
   the problem — hover over it to see the message, or run
   `lake exe leanlings run` to see it in the terminal.
 
-  Common errors:
+  Common errors :
   • "type mismatch" — the value doesn't match the expected type
   • "unknown identifier" — you used a name that doesn't exist
   • "function expected" — you tried to call a non-function
 
-  TODO: Fix each definition so the file compiles.
+  TODO : Fix each definition so the file compiles.
 -/
 
 -- Error: "type mismatch" — "yes" is a String, but Bool is expected.

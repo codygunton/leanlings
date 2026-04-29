@@ -6,7 +6,7 @@ inductive Expr where
 
 def isNum : Expr → Bool
   | .num _ => true
-  | _      => false
+  | _ => false
 
 def sampleExpr : Expr :=
   .mul (.add (.num 2) (.num 3)) (.num 4)

@@ -1,13 +1,13 @@
 /- # Do Notation 2: Error Handling with Except
 
-  `Except ε α` is like `Option` but carries an error message:
+  `Except ε α` is like `Option` but carries an error message :
   • `Except.ok value` — success
   • `Except.error msg` — failure with a message
 
   `do` notation works the same way — `←` extracts from `ok`,
   and short-circuits on `error`.
 
-  TODO: Implement the validation functions.
+  TODO : Implement the validation functions.
 -/
 
 def checkPositive (n : Int) : Except String Int :=

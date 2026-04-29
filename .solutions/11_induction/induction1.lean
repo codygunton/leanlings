@@ -1,5 +1,5 @@
 def myAdd : Nat → Nat → Nat
-  | n, 0     => n
+  | n, 0 => n
   | n, m + 1 => (myAdd n m) + 1
 
 theorem myAdd_zero (n : Nat) : myAdd n 0 = n := by

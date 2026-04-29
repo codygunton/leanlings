@@ -6,6 +6,6 @@ inductive Color where
 
 instance : ToString Color where
   toString
-    | .red   => "red"
+    | .red => "red"
     | .green => "green"
-    | .blue  => "blue"
+    | .blue => "blue"

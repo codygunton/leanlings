@@ -6,7 +6,7 @@
   • `constructor` — splits a goal `A ∧ B` into two subgoals.
     Also works for other multi-constructor types.
 
-  TODO: Complete the proofs.
+  TODO : Complete the proofs.
 -/
 
 -- Use `apply` to work backwards

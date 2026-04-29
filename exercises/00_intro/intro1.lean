@@ -8,7 +8,7 @@
   code isn't finished yet. Your job is to replace each `sorry`
   with a real implementation.
 
-  TODO: Replace `sorry` with the string "Hello, Lean!"
+  TODO : Replace `sorry` with the string "Hello, Lean!"
 -/
 
 def greeting : String := sorry

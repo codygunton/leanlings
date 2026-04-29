@@ -1,12 +1,12 @@
 /- # Basics 4: Boolean Logic
 
-  `Bool` has two values: `true` and `false`.
-  Operators:
+  `Bool` has two values : `true` and `false`.
+  Operators :
   • `&&` — logical AND (both must be true)
   • `||` — logical OR (at least one must be true)
-  • `!`  — logical NOT (flips true/false)
+  • `!` — logical NOT (flips true/false)
 
-  TODO: Replace each `sorry` with a Bool expression that
+  TODO : Replace each `sorry` with a Bool expression that
         evaluates to `true`.
 -/
 

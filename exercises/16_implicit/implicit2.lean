@@ -1,12 +1,12 @@
 /- # Implicit Arguments 2: Type Class Constraints
 
-  Note: `[BEq α]` (square brackets) is different from `{α : Type}`
+  Note : `[BEq α]` (square brackets) is different from `{α : Type}`
   (curly braces) — both are "implicit" in a sense, but they work
-  differently:
+  differently :
   • `{α : Type}` — Lean infers the type from usage
   • `[BEq α]` — Lean finds a type class *instance* automatically
 
-  Square brackets `[...]` pass type class instances:
+  Square brackets `[...]` pass type class instances :
 
     def printTwice [ToString α] (x : α) : String :=
       toString x ++ ", " ++ toString x
@@ -14,7 +14,7 @@
   This works with any type that has a `ToString` instance.
   Lean automatically finds the right instance.
 
-  TODO: Implement these polymorphic functions using type class constraints.
+  TODO : Implement these polymorphic functions using type class constraints.
 -/
 
 -- Check if a list contains an element (needs BEq)

@@ -3,7 +3,7 @@
   Let's prove fundamental properties of natural numbers.
   These are great practice combining tactics.
 
-  Useful tactics:
+  Useful tactics :
   - `omega` -- linear arithmetic
   - `simp` -- simplification
   - `rw [lemma]` -- rewriting
@@ -14,7 +14,7 @@
   - `Nat.zero_add` : 0 + n = n
   - `Nat.add_zero` : n + 0 = n
 
-  TODO: Prove these properties.
+  TODO : Prove these properties.
 -/
 
 -- Addition is commutative

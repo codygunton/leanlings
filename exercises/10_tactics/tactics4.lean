@@ -1,22 +1,22 @@
 /- # Tactics 4: simp, omega, and decide
 
-  Powerful automation tactics that can close goals in one step:
+  Powerful automation tactics that can close goals in one step :
 
   • `omega` — linear arithmetic over Nat and Int
-    Use when: the goal is about +, -, ≤, <, = on numbers.
+    Use when : the goal is about +, -, ≤, <, = on numbers.
 
   • `simp` — simplifies using known lemmas and definitions
-    Use when: the goal involves list/structure operations
+    Use when : the goal involves list/structure operations
     or needs rewriting with standard library facts.
 
   • `decide` — proves decidable propositions by evaluation
-    Use when: the goal can be checked by trying all cases
+    Use when : the goal can be checked by trying all cases
     (e.g., comparisons of specific numbers, finite Bool logic).
 
   Each exercise below is labeled with the RIGHT tactic.
   Try using the WRONG one too — see what happens!
 
-  TODO: Complete the proofs using the indicated tactic.
+  TODO : Complete the proofs using the indicated tactic.
 -/
 
 -- Use `omega` — this is linear arithmetic

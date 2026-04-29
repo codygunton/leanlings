@@ -15,7 +15,7 @@
     When both sides are definitionally equal, `rfl` is a proof.
     (rfl stands for "reflexivity")
 
-  TODO: Provide proofs for each theorem.
+  TODO : Provide proofs for each theorem.
 -/
 
 -- True is trivially true

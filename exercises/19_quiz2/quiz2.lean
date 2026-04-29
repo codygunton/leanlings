@@ -3,7 +3,7 @@
   This quiz covers do notation, loops, and polymorphic
   functions. No new concepts — just applying what you know!
 
-  TODO: Complete all definitions.
+  TODO : Complete all definitions.
 -/
 
 -- Helper: safe division (returns none when dividing by zero)

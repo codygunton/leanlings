@@ -4,7 +4,7 @@
   standard library. But you can recurse over any inductive
   type you define!
 
-  Recall the expression type from the inductive exercises:
+  Recall the expression type from the inductive exercises :
 
     inductive Expr where
       | num (n : Nat)
@@ -12,19 +12,19 @@
       | mul (a b : Expr)
 
   A recursive function follows the same pattern — match on
-  each constructor and recurse on sub-expressions:
+  each constructor and recurse on sub-expressions :
 
     def depth : Expr → Nat
-      | .num _   => 0
+      | .num _ => 0
       | .add a b => 1 + max (depth a) (depth b)
       | .mul a b => 1 + max (depth a) (depth b)
 
-  This is called **structural recursion**: every recursive call
+  This is called **structural recursion** : every recursive call
   is on a structurally smaller part of the input. Lean verifies
   this automatically — if your recursion isn't structural, it
   will reject the definition.
 
-  TODO: Implement `eval` and `countNums`.
+  TODO : Implement `eval` and `countNums`.
 -/
 
 inductive Expr where

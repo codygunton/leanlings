@@ -10,15 +10,15 @@ class Describable (α : Type) where
 
 instance : BEq Suit where
   beq
-    | .hearts, .hearts     => true
+    | .hearts, .hearts => true
     | .diamonds, .diamonds => true
-    | .clubs, .clubs       => true
-    | .spades, .spades     => true
-    | _, _                 => false
+    | .clubs, .clubs => true
+    | .spades, .spades => true
+    | _, _ => false
 
 instance : Describable Suit where
   describe
-    | .hearts   => "Hearts"
+    | .hearts => "Hearts"
     | .diamonds => "Diamonds"
-    | .clubs    => "Clubs"
-    | .spades   => "Spades"
+    | .clubs => "Clubs"
+    | .spades => "Spades"

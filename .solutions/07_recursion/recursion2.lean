@@ -1,3 +1,3 @@
 def sum : List Nat → Nat
-  | []     => 0
+  | [] => 0
   | h :: t => h + sum t

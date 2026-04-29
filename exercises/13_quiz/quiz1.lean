@@ -4,7 +4,7 @@
   concepts from the first twelve units. There are no hints —
   you have all the tools you need.
 
-  TODO: Complete all definitions and proofs.
+  TODO : Complete all definitions and proofs.
 -/
 
 -- =============================================
@@ -25,10 +25,10 @@ inductive Rating where
   deriving Repr
 
 structure Book where
-  title  : String
+  title : String
   author : String
-  pages  : Nat
-  genre  : Genre
+  pages : Nat
+  genre : Genre
   rating : Rating := .unrated
   deriving Repr
 
@@ -161,9 +161,11 @@ def catalog : List Book := [
 #guard (⟨"Big", "A", 500, .fantasy, .unrated⟩ : Book).isLong == true
 #guard (⟨"Small", "B", 100, .fantasy, .unrated⟩ : Book).isLong == false
 #guard (⟨"Edge", "C", 300, .fantasy, .unrated⟩ : Book).isLong == false
-#guard ({ title := "A", author := "B", pages := 500, genre := .science } : Book).isWorthReading == true
+#guard ({ title := "A", author := "B", pages := 500, genre :=
+  .science } : Book).isWorthReading == true
 #guard (⟨"A", "B", 100, .fantasy, .stars 5⟩ : Book).isWorthReading == true
-#guard ({ title := "A", author := "B", pages := 100, genre := .fantasy } : Book).isWorthReading == false
+#guard ({ title := "A", author := "B", pages := 100, genre :=
+  .fantasy } : Book).isWorthReading == false
 #guard (⟨"A", "B", 500, .fantasy, .stars 2⟩ : Book).isWorthReading == false
 #guard Book.describe ⟨"Test", "Author", 100, .fantasy, .unrated⟩
     == "Test by Author (100 pages, fantasy)"

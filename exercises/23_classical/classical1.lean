@@ -1,6 +1,6 @@
 /- # Classical Logic 1: Excluded Middle
 
-  Lean supports classical reasoning via:
+  Lean supports classical reasoning via :
   • `Classical.em (P : Prop) : P ∨ ¬P` — excluded middle
   • `Classical.byContradiction : (¬P → False) → P`
   • `Decidable.decide` for decidable props
@@ -8,7 +8,7 @@
   Not all propositions are decidable constructively,
   but classically, every proposition is either true or false.
 
-  TODO: Prove using classical reasoning.
+  TODO : Prove using classical reasoning.
 -/
 
 -- Every proposition is either true or false

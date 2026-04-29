@@ -1,14 +1,14 @@
 /- # Calc 2: Inequalities in Calc
 
-  `calc` also works with `≤`, `<`, `≥`, `>` and mixtures:
+  `calc` also works with `≤`, `<`, `≥`, `>` and mixtures :
 
     calc a
         _ ≤ b := by ...
-        _ < c := by ...   -- the relations compose: a < c
+        _ < c := by ... -- the relations compose: a < c
 
   Lean automatically combines compatible relations.
 
-  TODO: Complete these calculational proofs.
+  TODO : Complete these calculational proofs.
         Use `calc` with the given hypotheses.
 -/
 

@@ -12,7 +12,7 @@
   In the next module, you'll learn tactic mode — an alternative
   way to build proofs step by step.
 
-  TODO: Provide proofs for each theorem using `fun`.
+  TODO : Provide proofs for each theorem using `fun`.
 -/
 
 -- Implication: if we know P, we can prove P

@@ -5,7 +5,7 @@
 
     def double (n : Nat) : Nat := n + n
 
-  TODO: Implement `triple` so it returns three times its input.
+  TODO : Implement `triple` so it returns three times its input.
 -/
 
 def triple (n : Nat) : Nat := sorry

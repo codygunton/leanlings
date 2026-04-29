@@ -6,9 +6,9 @@
   `rw [← h]` rewrites backwards, replacing `b` with `a`.
   (Type ← as \l or \left)
 
-  You can chain rewrites: `rw [h1, h2, h3]`
+  You can chain rewrites : `rw [h1, h2, h3]`
 
-  TODO: Complete the proofs using `rw`.
+  TODO : Complete the proofs using `rw`.
 -/
 
 -- Rewrite using the hypothesis

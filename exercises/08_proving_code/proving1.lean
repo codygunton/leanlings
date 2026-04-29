@@ -7,10 +7,10 @@
   `rfl` ("reflexivity") is a proof. Lean evaluates both
   sides and checks they match — no cleverness needed.
 
-  This is the bridge between programming and proving:
+  This is the bridge between programming and proving :
   functions you write become things you can reason about.
 
-  TODO: Replace each `sorry` with `rfl`.
+  TODO : Replace each `sorry` with `rfl`.
 -/
 
 def double (n : Nat) : Nat := n + n

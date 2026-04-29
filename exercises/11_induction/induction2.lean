@@ -1,18 +1,18 @@
 /- # Induction 2: Induction on Lists
 
-  Lists support induction too:
+  Lists support induction too :
 
     induction l with
-    | nil => ...          -- base case: empty list
-    | cons h t ih => ...  -- inductive step: h :: t
+    | nil => ... -- base case: empty list
+    | cons h t ih => ... -- inductive step: h :: t
                           -- ih is the hypothesis for t
 
-  TODO: Prove that the length of two appended lists is the
+  TODO : Prove that the length of two appended lists is the
         sum of their lengths.
 -/
 
 def myLength : List α → Nat
-  | []     => 0
+  | [] => 0
   | _ :: t => 1 + myLength t
 
 -- Hint: Use `induction l1 with` to get two cases.

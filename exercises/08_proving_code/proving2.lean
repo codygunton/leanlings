@@ -2,17 +2,17 @@
 
   When a proof involves *variables* (not concrete values),
   you can't always rely on `rfl`. Instead, use tactic mode
-  by writing `by`:
+  by writing `by` :
 
     theorem foo : ... := by
       tactic_here
 
-  Useful tactics:
+  Useful tactics :
   • `rfl` — closes the goal when both sides are equal
   • `simp [f]` — unfolds function `f` and simplifies
   • `omega` — solves arithmetic about natural numbers
 
-  TODO: Complete the proofs. Hints are in the comments.
+  TODO : Complete the proofs. Hints are in the comments.
 -/
 
 def double (n : Nat) : Nat := n + n

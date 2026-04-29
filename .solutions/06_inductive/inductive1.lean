@@ -10,5 +10,5 @@ def opposite (d : Direction) : Direction :=
   match d with
   | north => south
   | south => north
-  | east  => west
-  | west  => east
+  | east => west
+  | west => east

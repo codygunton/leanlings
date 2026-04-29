@@ -1,6 +1,6 @@
 /- # Namespaces 2: Sections and Variables
 
-  `section` with `variable` lets you avoid repeating parameters:
+  `section` with `variable` lets you avoid repeating parameters :
 
     section
       variable (α : Type) [BEq α]
@@ -16,10 +16,10 @@
         | h :: t => (if h == x then 1 else 0) + myCount x t
     end
 
-  Note: `α` and `[BEq α]` are automatically added as
+  Note : `α` and `[BEq α]` are automatically added as
   parameters to every definition in the section.
 
-  TODO: Complete the definitions in the section.
+  TODO : Complete the definitions in the section.
 -/
 
 section

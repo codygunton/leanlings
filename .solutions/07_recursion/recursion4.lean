@@ -5,11 +5,11 @@ inductive Expr where
   deriving Repr
 
 def eval : Expr → Nat
-  | .num n   => n
+  | .num n => n
   | .add a b => eval a + eval b
   | .mul a b => eval a * eval b
 
 def countNums : Expr → Nat
-  | .num _   => 1
+  | .num _ => 1
   | .add a b => countNums a + countNums b
   | .mul a b => countNums a + countNums b

@@ -1,10 +1,10 @@
 /- # Final Quiz: The Complete Picture
 
-  This capstone exercise tests everything you've learned:
+  This capstone exercise tests everything you've learned :
   recursive types, structural recursion, induction proofs,
   existentials, iff-proofs, and tactic automation.
 
-  TODO: Complete all definitions and proofs.
+  TODO : Complete all definitions and proofs.
 -/
 
 -- =============================================

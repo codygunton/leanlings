@@ -12,7 +12,7 @@
   unlike `Nat` which only includes non-negative numbers.
   You can negate an Int with `-n`.
 
-  TODO: Implement `abs` that returns the absolute value of an integer.
+  TODO : Implement `abs` that returns the absolute value of an integer.
 -/
 
 def abs (n : Int) : Int := sorry

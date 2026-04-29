@@ -1,16 +1,16 @@
 /- # Type Classes 2: Defining Instances
 
-  You can define your own type classes:
+  You can define your own type classes :
 
     class Describable (α : Type) where
       describe : α → String
 
-  And provide instances for specific types:
+  And provide instances for specific types :
 
     instance : Describable Nat where
       describe n := s!"the number {n}"
 
-  TODO: 1. Implement the `BEq` instance for `Suit`.
+  TODO : 1. Implement the `BEq` instance for `Suit`.
         2. Implement the `Describable` instance for `Suit`.
 -/
 

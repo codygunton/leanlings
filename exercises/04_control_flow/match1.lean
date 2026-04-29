@@ -2,16 +2,16 @@
 
   `match` lets you branch based on the structure of a value.
 
-  `Option α` represents a value that might be absent:
+  `Option α` represents a value that might be absent :
   • `some x` — contains a value `x`
-  • `none`   — no value
+  • `none` — no value
 
-  Pattern matching syntax:
+  Pattern matching syntax :
     match value with
     | pattern1 => result1
     | pattern2 => result2
 
-  TODO: Implement `getOrDefault` that extracts the value from
+  TODO : Implement `getOrDefault` that extracts the value from
         an Option, or returns a default if none.
 -/
 

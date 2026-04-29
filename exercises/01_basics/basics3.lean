@@ -1,13 +1,13 @@
 /- # Basics 3: String Operations
 
-  Strings in Lean can be concatenated with `++`:
+  Strings in Lean can be concatenated with `++` :
     "Hello, " ++ "world!" = "Hello, world!"
 
-  You can also use string interpolation with `s!"..."`:
+  You can also use string interpolation with `s!"..."` :
     let name := "Lean"
     s!"Hello, {name}!" = "Hello, Lean!"
 
-  TODO: Replace each `sorry` with a string expression.
+  TODO : Replace each `sorry` with a string expression.
 -/
 
 -- Use `++` to concatenate two strings
