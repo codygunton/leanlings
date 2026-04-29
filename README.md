@@ -58,6 +58,38 @@ lake exe leanlings reset     # reset current exercise
 lake exe leanlings verify    # check all exercises
 ```
 
+## Formatting
+
+A wrapper script for [lean-fmt](https://github.com/codygunton/lean-fmt) is
+included. It auto-downloads the formatter on first use:
+
+```
+bin/lean-fmt file.lean          # format one file in-place
+bin/lean-fmt                    # format all exercises and solutions
+```
+
+**IDE format-on-save:** configure your editor to run `bin/lean-fmt` with the
+file path as the argument. For example, in Neovim with
+[conform.nvim](https://github.com/stevearc/conform.nvim):
+
+```lua
+require("conform").setup({
+  formatters_by_ft = { lean = { "lean_fmt" } },
+  formatters = {
+    lean_fmt = {
+      command = "bin/lean-fmt",
+      args = { "$FILENAME" },
+      stdin = false,
+    },
+  },
+})
+```
+
+The script tries `go install` from the fork first (includes a do-block
+indentation fix), then falls back to downloading a pre-built binary from
+the upstream [lotusirous/lean-fmt](https://github.com/lotusirous/lean-fmt)
+releases.
+
 ## Great resources for learning Lean 4
 
 The Lean community has produced wonderful learning materials. Here are some

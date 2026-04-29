@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# lean-fmt wrapper for leanlings
+#
+# Usage:
+#   bin/lean-fmt file.lean          # format one file in-place
+#   bin/lean-fmt *.lean             # format multiple files in-place
+#   bin/lean-fmt                    # format all .lean files in exercises/ and .solutions/
+#
+# IDE format-on-save: point your editor at this script with the file path as the argument.
+#
+# The binary is cached in .bin/lean-fmt. To use codygunton's fork instead of
+# upstream releases (includes a do-block indentation fix), install with:
+#   go install github.com/codygunton/lean-fmt@latest
+# and ensure ~/go/bin is in your PATH.
+
+LEAN_FMT_VERSION="v0.3.4"
+LEAN_FMT_REPO="lotusirous/lean-fmt"
+BIN_DIR="$(cd "$(dirname "$0")/.." && pwd)/.bin"
+CACHED_BIN="$BIN_DIR/lean-fmt"
+
+find_lean_fmt() {
+  if command -v lean-fmt &>/dev/null; then
+    echo "lean-fmt"
+    return
+  fi
+  if [[ -x "$CACHED_BIN" ]]; then
+    echo "$CACHED_BIN"
+    return
+  fi
+  return 1
+}
+
+detect_platform() {
+  local os arch
+  os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+  arch="$(uname -m)"
+
+  case "$os" in
+    linux)  os="linux" ;;
+    darwin) os="darwin" ;;
+    mingw*|msys*|cygwin*) os="windows" ;;
+    *) echo "Unsupported OS: $os" >&2; return 1 ;;
+  esac
+
+  case "$arch" in
+    x86_64|amd64)  arch="amd64" ;;
+    aarch64|arm64) arch="arm64" ;;
+    *) echo "Unsupported architecture: $arch" >&2; return 1 ;;
+  esac
+
+  echo "${os}-${arch}"
+}
+
+install_lean_fmt() {
+  mkdir -p "$BIN_DIR"
+
+  # Try go install first (gets the fork with patches)
+  if command -v go &>/dev/null; then
+    echo "Installing lean-fmt via go install..." >&2
+    GOBIN="$BIN_DIR" go install "github.com/codygunton/lean-fmt@latest" 2>&1 >&2
+    if [[ -x "$CACHED_BIN" ]]; then
+      echo "Installed lean-fmt to $CACHED_BIN" >&2
+      return
+    fi
+  fi
+
+  # Fall back to downloading upstream release binary
+  local platform ext url
+  platform="$(detect_platform)"
+  case "$platform" in
+    windows-*) ext="zip" ;;
+    *)         ext="tar.gz" ;;
+  esac
+
+  url="https://github.com/$LEAN_FMT_REPO/releases/download/$LEAN_FMT_VERSION/lean-fmt-${platform}.${ext}"
+  echo "Downloading lean-fmt from $url..." >&2
+
+  local tmpdir
+  tmpdir="$(mktemp -d)"
+  trap "rm -rf '$tmpdir'" EXIT
+
+  if command -v curl &>/dev/null; then
+    curl -fsSL "$url" -o "$tmpdir/lean-fmt.$ext"
+  elif command -v wget &>/dev/null; then
+    wget -q "$url" -O "$tmpdir/lean-fmt.$ext"
+  else
+    echo "Error: neither curl nor wget found" >&2
+    exit 1
+  fi
+
+  case "$ext" in
+    tar.gz) tar -xzf "$tmpdir/lean-fmt.$ext" -C "$tmpdir" ;;
+    zip)    unzip -q "$tmpdir/lean-fmt.$ext" -d "$tmpdir" ;;
+  esac
+
+  # The binary may be at the top level or in a subdirectory
+  local bin
+  bin="$(find "$tmpdir" -name 'lean-fmt' -type f | head -1)"
+  if [[ -z "$bin" ]]; then
+    echo "Error: lean-fmt binary not found in archive" >&2
+    exit 1
+  fi
+
+  cp "$bin" "$CACHED_BIN"
+  chmod +x "$CACHED_BIN"
+  echo "Installed lean-fmt to $CACHED_BIN" >&2
+}
+
+format_file() {
+  local file="$1"
+  local fmt_bin="$2"
+  local tmpfile
+
+  tmpfile="$(mktemp)"
+  if "$fmt_bin" "$file" > "$tmpfile"; then
+    # Only replace if formatting produced output and differs
+    if [[ -s "$tmpfile" ]] && ! cmp -s "$file" "$tmpfile"; then
+      mv "$tmpfile" "$file"
+      echo "formatted: $file"
+    else
+      rm -f "$tmpfile"
+    fi
+  else
+    rm -f "$tmpfile"
+    echo "error formatting: $file" >&2
+    return 1
+  fi
+}
+
+# --- Main ---
+
+FMT_BIN="$(find_lean_fmt 2>/dev/null)" || {
+  install_lean_fmt
+  FMT_BIN="$CACHED_BIN"
+}
+
+if [[ $# -eq 0 ]]; then
+  # No args: format all exercise and solution .lean files
+  find exercises .solutions -name '*.lean' -print0 | while IFS= read -r -d '' file; do
+    format_file "$file" "$FMT_BIN"
+  done
+else
+  for file in "$@"; do
+    format_file "$file" "$FMT_BIN"
+  done
+fi
