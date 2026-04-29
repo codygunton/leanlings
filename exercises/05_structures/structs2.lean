@@ -1,6 +1,6 @@
 /- # Structures 2: Using Fields
 
-  Access structure fields with dot notation :
+Access structure fields with dot notation :
     let p : Point := ⟨3.0, 4.0⟩
     p.x -- 3.0
     p.y -- 4.0
@@ -8,14 +8,14 @@
   You can also create a modified copy with `{ s with field := val }` :
     let p2 := { p with age := 26 } -- same name, new age
 
-  TODO : Implement all three functions.
--/
+    TODO : Implement all three functions.
+    -/
 
 structure Person where
   firstName : String
   lastName : String
   age : Nat
-  deriving BEq -- auto-generates `==`; you'll learn how in unit 12
+deriving BEq -- auto-generates `==`; you'll learn how in unit 12
 
 def fullName (p : Person) : String := sorry
 
@@ -29,5 +29,6 @@ def birthday (p : Person) : Person := sorry
 #guard fullName { firstName := "Jane", lastName := "Doe", age := 25 } == "Jane Doe"
 #guard isAdult { firstName := "A", lastName := "B", age := 18 } == true
 #guard isAdult { firstName := "A", lastName := "B", age := 17 } == false
-#guard birthday { firstName := "A", lastName := "B", age := 25 } == { firstName := "A", lastName := "B", age :=
+#guard birthday { firstName := "A", lastName := "B", age := 25 } == { firstName := "A", lastName :=
+  "B", age :=
   26 }

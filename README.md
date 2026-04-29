@@ -1,6 +1,6 @@
 # Leanlings
 
-Learn Lean 4 by fixing 70 small exercises, one at a time.
+Learn Lean 4 by fixing 118 small exercises, one at a time.
 
 Leanlings is a command-line exercise runner — inspired by
 [rustlings](https://github.com/rust-lang/rustlings) — that teaches both
@@ -11,22 +11,28 @@ the next exercise automatically.
 
 ## What you'll learn
 
-The 70 exercises are organized into 27 units across three arcs:
+The 118 exercises are organized into 43 units across three arcs:
 
-**Arc 1 — Programming fundamentals** (units 0–7, 14–18)
+**Arc 1 — Programming fundamentals** (units 0–8, 19–26)
 Strings, arithmetic, functions, control flow, structures, inductive types,
-recursion, do-notation, IO, implicit arguments, arrays, and namespaces.
+recursion, `Option`/`Except` error handling, do-notation, IO, implicit
+arguments, arrays, namespaces, `Functor`/`Applicative` type classes, and the
+`Monad` typeclass (`bind`, `>>=`, implementing custom monads).
 
-**Arc 2 — Proof fundamentals** (units 8–12, 20–23)
-`rfl`, `simp`, `omega`, propositions, tactics (`intro`, `exact`, `apply`,
+**Arc 2 — Proof fundamentals** (units 9–17, 27–36)
+`rfl`, `simp`, `omega`, reading the Lean InfoView, propositions, tactics (`intro`, `exact`, `apply`,
 `cases`, `constructor`, `rw`), induction, existentials, `have`, `calc`,
-classical logic.
+classical logic. Three deep-dive units on rewriting (`rw` patterns),
+simplification (`simp`, `simp only`, `simp?`), and decision procedures
+(`omega`, `decide`). Six Mathlib tactic units covering `ring`, `linarith`,
+`push_neg`, `contrapose`, `rcases`, `obtain`, `ext`, `conv`, and tactic search
+(`exact?`, `apply?`).
 
-**Arc 3 — Putting it together** (units 24–26)
+**Arc 3 — Putting it together** (units 37–42)
 Proofs about natural number arithmetic, list operations, and a final capstone
 on binary trees combining recursive functions with induction proofs.
 
-Three checkpoint quizzes (units 13, 19, 26) tie everything together.
+Three checkpoint quizzes (units 18, 24, 42) tie everything together.
 
 ## Getting started
 
