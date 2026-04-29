@@ -1,11 +1,11 @@
 /- # Do Notation 1: Chaining with Option
 
-  You might associate `do` with IO, but it works with any
-  monad — including `Option`! We cover `do` before IO to
-  show that the notation is about *sequencing*, not side effects.
+You might associate `do` with IO, but it works with any
+monad — including `Option`! We cover `do` before IO to
+show that the notation is about *sequencing*, not side effects.
 
-  `do` notation lets you chain operations that might fail.
-  With `Option` :
+`do` notation lets you chain operations that might fail.
+With `Option` :
 
     def safeDivide (a b : Nat) : Option Nat :=
       if b == 0 then none else some (a / b)
@@ -19,18 +19,22 @@
   the entire `do` block returns `none`.
 
   TODO : Fill in the do blocks below.
--/
+  -/
 
 def safeDivide (a b : Nat) : Option Nat :=
   if b == 0 then none else some (a / b)
 
 -- Compute 100 / 5 / 4 using do notation (should be some 5)
 def chainedDivide : Option Nat := do
-  sorry
+  let x <- safeDivide 100 5
+  let y <- safeDivide x 4
+  return y
 
+--- QUESTION: why does return safeDivide 1 0 not work? Don't undestand error
 -- This should return none (division by zero in the chain)
 def failingDivide : Option Nat := do
-  sorry
+  let x <- safeDivide 1 0
+  return x
 
 -- Don't change below this line!
 #guard chainedDivide == some 5

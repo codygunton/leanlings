@@ -1,6 +1,6 @@
 /- # Do Notation 2: Error Handling with Except
 
-  `Except ε α` is like `Option` but carries an error message :
+`Except ε α` is like `Option` but carries an error message :
   • `Except.ok value` — success
   • `Except.error msg` — failure with a message
 
@@ -8,7 +8,7 @@
   and short-circuits on `error`.
 
   TODO : Implement the validation functions.
--/
+  -/
 
 def checkPositive (n : Int) : Except String Int :=
   if n > 0 then .ok n else .error "must be positive"
@@ -18,8 +18,11 @@ def checkSmall (n : Int) : Except String Int :=
 
 -- Validate that a number is both positive and small
 -- Chain the two checks using do notation.
+--- QUESTION: similar to the prevoius one in do1.lean
 def validate (n : Int) : Except String Int := do
-  sorry
+  let tryPos <- checkPositive n;
+  let trySmall <- checkSmall tryPos;
+  return trySmall
 
 -- Don't change below this line!
 deriving instance BEq for Except

@@ -1,6 +1,6 @@
 /- # Definitions 3: Let Bindings
 
-  `let` introduces local definitions within an expression :
+`let` introduces local definitions within an expression :
 
     let x := 5
     let y := x + 1
@@ -13,7 +13,9 @@
 -/
 
 def difference_of_squares : Nat :=
-  sorry
+  let a := 10
+  let b := 3
+  (a + b) * (a - b)
 
 -- Don't change below this line!
 #guard difference_of_squares == 91

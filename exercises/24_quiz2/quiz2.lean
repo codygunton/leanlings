@@ -1,9 +1,9 @@
 /- # Quiz 2: Practical Lean
 
-  This quiz covers do notation, loops, and polymorphic
-  functions. No new concepts — just applying what you know!
+This quiz covers do notation, loops, and polymorphic
+functions. No new concepts — just applying what you know!
 
-  TODO : Complete all definitions.
+TODO : Complete all definitions.
 -/
 
 -- Helper: safe division (returns none when dividing by zero)
@@ -13,17 +13,28 @@ def safeDivide (a b : Nat) : Option Nat :=
 -- 1. Use do notation to chain two safe divisions:
 --    divide a by b, then divide the result by c.
 def safeDivTwice (a b c : Nat) : Option Nat := do
-  sorry
+   let imm <- safeDivide a b
+   let res <- safeDivide imm c
+   res
+
 
 -- 2. Use Id.run do with a mutable variable and for loop.
 --    Compute 1² + 2² + ... + n²
 def sumOfSquares (n : Nat) : Nat := Id.run do
-  sorry
+  if n == 0 then return 0
+  else
+  let mut res := 0
+  for i in List.range n do
+    res := res + (i+1)^2
+  res
 
 -- 3. Polymorphic function: count how many times `target`
 --    appears in the list. Needs [BEq α] constraint.
 def countOccurrences [BEq α] (target : α) (l : List α) : Nat :=
-  sorry
+  match l with
+  | [] => 0
+  | a::as => (if a == target then 1 else 0) + (countOccurrences target as)
+  /- l.foldl (fun (acc : Nat) (x : α) => if x == target then 1 + acc else acc) 0 -/
 
 -- Don't change below this line!
 #guard safeDivTwice 100 5 4 == some 5

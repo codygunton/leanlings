@@ -1,6 +1,6 @@
 /- # Type Classes 2: Defining Instances
 
-  You can define your own type classes :
+You can define your own type classes :
 
     class Describable (α : Type) where
       describe : α → String
@@ -12,25 +12,33 @@
 
   TODO : 1. Implement the `BEq` instance for `Suit`.
         2. Implement the `Describable` instance for `Suit`.
--/
+  -/
 
 inductive Suit where
   | hearts
   | diamonds
   | clubs
   | spades
-  deriving Repr
+deriving Repr
 
 class Describable (α : Type) where
   describe : α → String
 
 -- TODO: Implement BEq for Suit
 instance : BEq Suit where
-  beq := sorry
+  beq := fun
+  | .hearts => fun | .hearts => true | _ => false
+  | .diamonds => fun | .diamonds => true | _ => false
+  | .clubs => fun | .clubs => true | _ => false
+  | .spades => fun | .spades => true | _ => false
 
 -- TODO: Implement Describable for Suit
 instance : Describable Suit where
-  describe := sorry
+  describe := fun
+  | .hearts => "hearts"
+  | .diamonds => "diamonds"
+  | .clubs => "clubs"
+  | .spades => "spades"
 
 -- Don't change below this line!
 #guard (Suit.hearts == Suit.hearts) == true

@@ -1,18 +1,20 @@
 /- # Recursion 2: List Recursion
 
-  Lists are recursive, so functions over lists are often
-  recursive too. Match on empty and cons :
+Lists are recursive, so functions over lists are often
+recursive too. Match on empty and cons :
 
     def length : List α → Nat
       | [] => 0
       | _ :: t => 1 + length t
 
-  TODO : Implement `sum` that adds all elements of a list.
+TODO : Implement `sum` that adds all elements of a list.
         sum [] = 0
         sum [1, 2, 3] = 6
 -/
 
-def sum : List Nat → Nat := sorry
+def sum : List Nat → Nat
+| [] => 0
+| l :: r => l + sum r
 
 -- Don't change below this line!
 #guard sum [] == 0

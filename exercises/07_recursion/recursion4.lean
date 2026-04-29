@@ -1,10 +1,10 @@
 /- # Recursion 4: Recursion on Custom Types
 
-  So far we've recursed over Nat and List — types from the
-  standard library. But you can recurse over any inductive
-  type you define!
+So far we've recursed over Nat and List — types from the
+standard library. But you can recurse over any inductive
+type you define!
 
-  Recall the expression type from the inductive exercises :
+Recall the expression type from the inductive exercises :
 
     inductive Expr where
       | num (n : Nat)
@@ -19,25 +19,39 @@
       | .add a b => 1 + max (depth a) (depth b)
       | .mul a b => 1 + max (depth a) (depth b)
 
-  This is called **structural recursion** : every recursive call
-  is on a structurally smaller part of the input. Lean verifies
-  this automatically — if your recursion isn't structural, it
-  will reject the definition.
+This is called **structural recursion** : every recursive call
+is on a structurally smaller part of the input. Lean verifies
+this automatically — if your recursion isn't structural, it
+will reject the definition.
 
-  TODO : Implement `eval` and `countNums`.
+TODO : Implement `eval` and `countNums`.
 -/
 
 inductive Expr where
   | num (n : Nat)
   | add (a b : Expr)
   | mul (a b : Expr)
-  deriving Repr
+deriving Repr
 
 -- Evaluate the expression tree to a Nat
-def eval : Expr → Nat := sorry
+def eval : Expr → Nat
+| .num n => n
+| .add a b => (eval a) + (eval b)
+| .mul a b => (eval a) * (eval b)
 
--- Count how many `num` leaves are in the expression
-def countNums : Expr → Nat := sorry
+/- -- Count how many `num` leaves are in the expression -/
+/- def countNums (e: Expr) : Nat := -/
+/-   doit e 0 -/
+/-   where -/
+/-     doit : Expr -> Nat -> Nat -/
+/-       | .num _, acc => acc + 1 -/
+/-       | .add a b, acc => acc + (doit a acc) + (doit b acc) -/
+/-       | .mul a b, acc => acc + (doit a acc) + (doit b acc) -/
+
+def countNums : Expr → Nat
+| .num _ => 1
+| .add a b => countNums a + countNums b
+| .mul a b => countNums a + countNums b
 
 -- Don't change below this line!
 #guard eval (.num 7) == 7

@@ -1,6 +1,6 @@
 /- # Intro 1: Hello, Lean!
 
-  Welcome to Leanlings! Each exercise is a Lean file with
+Welcome to Leanlings! Each exercise is a Lean file with
   something that needs to be fixed.
 
   `sorry` is a special keyword that fills any hole in your code.
@@ -9,9 +9,9 @@
   with a real implementation.
 
   TODO : Replace `sorry` with the string "Hello, Lean!"
--/
+  -/
 
-def greeting : String := sorry
+def greeting : String := "Hello, Lean!"
 
 -- Don't change below this line!
 #guard greeting == "Hello, Lean!"

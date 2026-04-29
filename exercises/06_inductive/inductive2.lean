@@ -1,6 +1,6 @@
 /- # Inductive Types 2: Data-Carrying Constructors
 
-  Constructors can carry data :
+Constructors can carry data :
 
     inductive Shape where
       | circle (radius : Float)
@@ -12,29 +12,32 @@
     | .circle r => ...
     | .rectangle w h => ...
 
-  You can also pattern match directly with `fun` :
+    You can also pattern match directly with `fun` :
 
     fun | .circle r => ... | .rectangle _ _ => ...
 
-  This is a shorthand for an anonymous function that
-  immediately matches on its argument.
+      This is a shorthand for an anonymous function that
+      immediately matches on its argument.
 
-  The `.` prefix works when the expected type is known.
+      The `.` prefix works when the expected type is known.
 
-  TODO : Implement `getValueOr` using `match`,
+      TODO : Implement `getValueOr` using `match`,
         and `isOk` using `fun` pattern matching.
--/
+      -/
 
 inductive Result where
   | ok (value : Nat)
   | error (message : String)
-  deriving Repr
+deriving Repr
 
 -- Use `match r with | .ok v => ... | .error _ => ...`
-def getValueOr (r : Result) (default : Nat) : Nat := sorry
+def getValueOr (r : Result) (default : Nat) : Nat :=
+  match r with
+  | .ok r => r
+  | .error _ => default
 
 -- Use `fun | .ok _ => ... | .error _ => ...`
-def isOk : Result → Bool := sorry
+def isOk : Result → Bool := fun | .ok _ => true | .error _ => false
 
 -- Don't change below this line!
 #guard getValueOr (.ok 42) 0 == 42

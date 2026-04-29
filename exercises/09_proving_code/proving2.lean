@@ -1,47 +1,37 @@
-/- # Proving Code 2: The omega Tactic
+/- # Proving Code 2: Tactic Proofs
 
-`rfl` proves equalities that Lean can *compute* to the same
-value. But when a theorem has variables, computation alone
-isn't always enough :
+When a proof involves *variables* (not concrete values),
+you can't always rely on `rfl`. Instead, use tactic mode
+by writing `by` :
 
-    0 + n = n -- `n` is a variable, so Lean can't evaluate
-                  -- the left side to a concrete number.
+    theorem foo : ... := by
+      tactic_here
 
-For goals about +, -, ≤, <, = on natural numbers, the
-`omega` tactic solves them automatically. Think of it as
-a calculator that works with variables.
+  Useful tactics :
+    • `rfl` — closes the goal when both sides are equal
+    • `simp [f]` — unfolds function `f` and simplifies
+    • `omega` — solves arithmetic about natural numbers
 
-  TIP : After typing `by`, place your cursor on each tactic
-  line. The **Lean InfoView** panel (right side in VS Code)
-  shows the current *proof state* — your goal (below ⊢) and
-  any available hypotheses (above ⊢). Watch it update as
-  you step through the proof.
+    TODO : Complete the proofs. Hints are in the comments.
+    -/
 
-TODO : Complete each proof. Use `rfl` when both sides are
-       definitionally equal, and `omega` when you need
-       arithmetic reasoning.
--/
+def double (n : Nat) : Nat := n + n
 
 def triple (n : Nat) : Nat := 3 * n
 
--- `triple n` IS defined as `3 * n`, so this is definitional — rfl works.
--- (Check InfoView: the goal is `triple 0 = 0`, and Lean computes both to 0)
+-- Concrete values: `rfl` still works inside `by`
 theorem triple_0 : triple 0 = 0 := by
-  sorry
+  rfl
 
--- Same idea — the goal literally matches the definition body.
+-- Variable n: unfold the definition with `simp [triple]`
 theorem triple_def (n : Nat) : triple n = 3 * n := by
-  sorry
+  simp [triple]
 
--- Now try `rfl` on this one — it fails! Why?
--- Lean defines `+` by pattern-matching on the SECOND argument,
--- so `0 + n` doesn't simplify when `n` is a variable.
--- `omega` understands this arithmetic and closes the goal.
--- (InfoView shows: ⊢ 0 + n = n)
+-- Arithmetic with variables: try `omega`
 theorem zero_add (n : Nat) : 0 + n = n := by
-  sorry
+  omega
 
--- omega handles any linear arithmetic on Nat
--- (InfoView shows: ⊢ a + b = b + a)
-theorem add_comm_example (a b : Nat) : a + b = b + a := by
-  sorry
+-- Combine unfolding + arithmetic: `simp [double]; omega`
+theorem double_add (a b : Nat) : double (a + b) = double a + double b := by
+  unfold double
+  omega

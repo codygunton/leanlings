@@ -1,7 +1,7 @@
 /- # Recursion 3: Accumulator Pattern
 
-  Sometimes it helps to carry an accumulator — an extra parameter
-  that builds up the result :
+Sometimes it helps to carry an accumulator — an extra parameter
+that builds up the result :
 
     def sum (l : List Nat) : Nat :=
       go l 0
@@ -14,10 +14,16 @@
 
   TODO : Implement `reverse` using an accumulator.
         reverse [1, 2, 3] = [3, 2, 1]
--/
+  -/
 
 def reverse (l : List α) : List α :=
-  sorry
+  doit l []
+where
+    doit : List α -> List α -> List α
+      | [], res => res
+      | val :: l, res => doit l ([val] ++ res)
+
+#eval reverse [1,2,3]
 
 -- Don't change below this line!
 #guard reverse [1, 2, 3] == [3, 2, 1]

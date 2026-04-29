@@ -7,12 +7,12 @@ In the previous module, you wrote proofs as expressions
 
   Enter tactic mode with `by` :
 
+    DOTIHS : shouldn't assume source = target here and improve exposition
     theorem foo : P → P := by
       intro h -- introduces hypothesis `h : P`
       exact h -- closes the goal with `h`
 
-  • `intro h` moves a hypothesis from the goal into context
-    (InfoView : the `P →` disappears from the goal, `h : P` appears above ⊢)
+  • `intro h` moves the hypothesis from the goal into context
 
   • `exact term` closes the goal when `term` has the right type
 
@@ -21,13 +21,16 @@ In the previous module, you wrote proofs as expressions
 
 -- Introduce the hypothesis, then provide it as the proof
 theorem self_implication (P : Prop) : P → P := by
-  sorry
+  intro p
+  exact p
 
 -- Introduce both hypotheses, then use the right one
 theorem use_second (P Q : Prop) : P → Q → Q := by
-  sorry
+  intro p q
+  exact q
 
--- Introduce all three, then combine them
--- (InfoView after intro: hpq : P → Q, hqr : Q → R, hp : P)
+-- Function composition
 theorem compose (P Q R : Prop) : (P → Q) → (Q → R) → P → R := by
-  sorry
+  intro f
+  intro g
+  exact g ∘ f

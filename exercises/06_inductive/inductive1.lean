@@ -1,6 +1,6 @@
 /- # Inductive Types 1: Enumerations
 
-  Inductive types define a type with a fixed set of constructors :
+Inductive types define a type with a fixed set of constructors :
 
     inductive Season where
       | spring
@@ -15,7 +15,7 @@
       | .summer => true
       | _ => false
 
-  TODO : Implement `opposite` that returns the opposite direction.
+TODO : Implement `opposite` that returns the opposite direction.
 -/
 
 inductive Direction where
@@ -23,10 +23,14 @@ inductive Direction where
   | south
   | east
   | west
-  deriving Repr, BEq
+deriving Repr, BEq
 
 open Direction in
-def opposite (d : Direction) : Direction := sorry
+def opposite : Direction -> Direction
+| .north => south
+| .south => north
+| .east => west
+| .west => east
 
 -- Don't change below this line!
 open Direction in
