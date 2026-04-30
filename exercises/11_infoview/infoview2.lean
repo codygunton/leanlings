@@ -31,14 +31,14 @@ def double (n : Nat) : Nat := n + n
 -- What closes a goal where both sides are identical?
 theorem double_self (n : Nat) : double n = n + n := by
   unfold double
-  sorry
+  rfl
 
 -- Step 1 unfolds `double`.
 -- After unfold, InfoView shows: ⊢ n + n = 2 * n
 -- What handles arithmetic with variables?
 theorem double_two_mul (n : Nat) : double n = 2 * n := by
   unfold double
-  sorry
+  omega
 
 -- simp [double] unfolds AND simplifies in one step.
 -- But here the arithmetic isn't trivial enough for simp alone.
@@ -46,11 +46,13 @@ theorem double_two_mul (n : Nat) : double n = 2 * n := by
 -- What tactic finishes arithmetic?
 theorem double_double (n : Nat) : double (double n) = 4 * n := by
   simp [double]
-  sorry
+  omega
 
 -- Now YOU write both steps.
 -- Hint: use `simp [triple, double]` to unfold both definitions, then check InfoView.
 def triple (n : Nat) : Nat := 3 * n
 
 theorem triple_vs_double (n : Nat) : triple n = double n + n := by
-  sorry
+  unfold triple
+  unfold double
+  omega

@@ -9,11 +9,10 @@ def findAdult (pairs : List (String × Nat)) : Option Nat :=
   (lookup "age" pairs).bind (fun age =>
     if age >= 18 then some age else none)
 
--- Strategy: do notation chains two lookups cleanly
-def computeArea (config : List (String × Nat)) : Option Nat := do
-  let w ← lookup "width" config
-  let h ← lookup "height" config
-  pure (w * h)
+-- Strategy: bind chains two lookups
+def computeArea (config : List (String × Nat)) : Option Nat :=
+  (lookup "width" config).bind (fun w =>
+    (lookup "height" config).map (w * ·))
 
 #guard addTen (some 5) == some 15
 #guard addTen none == none

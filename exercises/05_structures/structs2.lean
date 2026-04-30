@@ -29,6 +29,5 @@ def birthday (p : Person) : Person := {p with age := p.age+1}
 #guard fullName { firstName := "Jane", lastName := "Doe", age := 25 } == "Jane Doe"
 #guard isAdult { firstName := "A", lastName := "B", age := 18 } == true
 #guard isAdult { firstName := "A", lastName := "B", age := 17 } == false
-#guard birthday { firstName := "A", lastName := "B", age := 25 } == { firstName := "A", lastName :=
-  "B", age :=
+#guard birthday { firstName := "A", lastName := "B", age := 25 } == { firstName := "A", lastName := "B", age :=
   26 }

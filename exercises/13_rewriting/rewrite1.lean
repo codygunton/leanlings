@@ -22,22 +22,23 @@ TODO : Complete the proofs using `rw` with library lemmas.
 -- InfoView shows: ⊢ a + b = b + a
 -- One `rw` with the right lemma closes this.
 theorem swap_add (a b : Nat) : a + b = b + a := by
-  sorry
+  rw [Nat.add_comm]
 
 -- Nat.add_assoc : ∀ (n m k : Nat), n + m + k = n + (m + k)
 -- Note: `a + b + c` is parsed as `(a + b) + c` by left-association.
 -- InfoView shows: ⊢ a + b + c = a + (b + c)
 theorem reassociate (a b c : Nat) : a + b + c = a + (b + c) := by
-  sorry
+  rw [Nat.add_assoc]
 
 -- Nat.mul_comm : ∀ (n m : Nat), n * m = m * n
 -- InfoView shows: ⊢ a * b = b * a
 theorem swap_mul (a b : Nat) : a * b = b * a := by
-  sorry
+  rw [Nat.mul_comm]
 
 -- Chain two rewrites to rearrange a sum.
 -- Step 1: `rw [Nat.add_assoc]` turns (a + b) + c into a + (b + c)
 -- Step 2: `rw [Nat.add_comm b c]` turns b + c into c + b
 -- Check InfoView between steps to see the transformation!
 theorem chain_rw (a b c : Nat) : a + b + c = a + (c + b) := by
-  sorry
+  rw [Nat.add_assoc]
+  rw [Nat.add_comm b c]

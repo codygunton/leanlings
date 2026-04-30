@@ -1,40 +1,46 @@
-/- # Option 3: Chaining with map, bind, and do
+/- # Option 3: Chaining with map and bind
 
-When you have several operations that might fail, chaining
-them with pattern matching gets deeply nested. Lean provides
-cleaner tools :
+Both `.map` and `.bind` propagate `none` automatically.
+They differ in what `f` returns :
 
-  `Option.map f o` — apply `f` to the value inside, if any
-    (some 5).map (· + 1) = some 6
-    none.map (· + 1) = none
+  `.map (f : α → β) : Option α → Option β`
+  `.bind (f : α → Option β) : Option α → Option β`
 
-  `Option.bind o f` — chain : if `o` is `some x`, run `f x`
-    (some 5).bind (fun n => if n > 3 then some n else none)
+Use `.map` when `f` can't fail (plain value).
+Use `.bind` when `f` can also fail (returns Option).
 
-  `do` notation — syntactic sugar for bind :
-    do let x ← someOption -- extract, or short-circuit
-       let y ← anotherOption
-       pure (x + y) -- wrap result in `some`
+  (some 5).map (· + 1) = some 6
+  (some 5).bind (fun n => if n > 3 then some n else none) = some 5
+  none.map (· + 1) = none
+  none.bind (fun _ => some 1) = none
 
-TODO : Implement using `.map`, `.bind`, or `do` notation.
+`|>` (pipe) passes the left side as input to the right :
+  x |> f is the same as f x
+
+TODO : Implement using `.map` and `.bind`.
 -/
 
 -- Use `.map` to add 10 to the value inside an Option.
-def addTen (o : Option Nat) : Option Nat := sorry
+def addTen (o : Option Nat) : Option Nat :=
+  o.map (· + 10)
 
 -- Use `.bind` to chain two lookups.
 -- Given a list of (key, value) pairs, look up a key.
 def lookup (key : String) (pairs : List (String × Nat)) : Option Nat :=
   pairs.find? (·.1 == key) |>.map (·.2)
 
--- Use `lookup` twice: first find "age", then check if it's ≥ 18.
--- Return `none` if the key is missing OR the age is under 18.
-def findAdult (pairs : List (String × Nat)) : Option Nat := sorry
+-- Input: a map that may contain "name" and "age" keys.
+-- Return the age if present and ≥ 18, otherwise `none`.
+def findAdult (pairs : List (String × Nat)) : Option Nat :=
+  let o := lookup "age" pairs
+  o.bind (fun a => if a ≥ 18 then some a else none)
 
--- Use `do` notation to chain three Option operations.
--- Parse a "config": look up "width" and "height", return their product.
--- Return `none` if either key is missing.
-def computeArea (config : List (String × Nat)) : Option Nat := sorry
+-- Input: a map that may contain "width" and "height" keys.
+-- Compute the area, or `none` if either key is missing.
+def computeArea (config : List (String × Nat)) : Option Nat :=
+  let ow := lookup "width" config
+  let oh := lookup "height" config
+  ow.bind (fun w => oh.map (w * ·))
 
 #guard addTen (some 5) == some 15
 #guard addTen none == none

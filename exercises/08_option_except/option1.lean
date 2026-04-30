@@ -7,17 +7,19 @@ might fail. Dividing by zero is undefined. Lean uses
   `some x` — success, carrying value `x`
   `none` — failure, no value
 
-You construct Options and pattern-match to extract values :
+You construct Options with `some` and `none`, and
+pattern-match to extract values :
 
-  def safeHead (l : List α) : Option α :=
-    match l with
-    | [] => none
-    | x :: _ => some x
+  def safeDivide (a b : Nat) : Option Nat :=
+    if b == 0 then none else some (a / b)
 
   def unwrap (o : Option Nat) : Nat :=
     match o with
     | some n => n
     | none => 0 -- default when missing
+
+Remember that lists are destructured as `x :: xs`
+(head :: tail), and `[]` matches the empty list.
 
 TODO : Implement each function using `Option`.
 -/
@@ -26,6 +28,7 @@ TODO : Implement each function using `Option`.
 def safeDivide (a b : Nat) : Option Nat := sorry
 
 -- Return the first element, or `none` for an empty list.
+-- Hint: match on the list; `[]` is empty, `x :: _` has a head.
 def safeHead (l : List α) : Option α := sorry
 
 -- Return the last element, or `none` for an empty list.

@@ -31,7 +31,7 @@ theorem use_hyp (a b : Nat) (h : a = b) : a = b := by
 -- InfoView shows:  h : 5 = 5  ⊢  5 = 5
 -- Same idea — `exact h` provides the proof.
 theorem use_hyp2 (h : 5 = 5) : 5 = 5 := by
-  sorry
+  exact h
 
 -- Now with `intro`. Before intro:  ⊢  P → P
 -- After `intro h`:  h : P  ⊢  P
@@ -39,7 +39,7 @@ theorem use_hyp2 (h : 5 = 5) : 5 = 5 := by
 -- Place cursor after `intro h` and confirm in InfoView.
 theorem self_impl (P : Prop) : P → P := by
   intro h
-  sorry
+  exact h
 
 -- Two intros needed: the goal is A → B → B.
 -- After `intro ha`: ha : A  ⊢  B → B
@@ -48,10 +48,10 @@ theorem self_impl (P : Prop) : P → P := by
 theorem use_second_hyp (A B : Prop) : A → B → B := by
   intro ha
   intro hb
-  sorry
+  exact hb
 
 -- Now combine omega with a hypothesis.
 -- InfoView shows: a b : Nat,  h : a = b  ⊢  a + 1 = b + 1
 -- omega can use hypotheses automatically!
 theorem shift (a b : Nat) (h : a = b) : a + 1 = b + 1 := by
-  sorry
+  omega
