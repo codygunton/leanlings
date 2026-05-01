@@ -32,7 +32,6 @@ def validateName (name : String) : Except String String :=
   | "" => .error "name is empty"
   | name => .ok name
 
--- QUESTIOn: did ew totally replace the existing option lesson? 
 -- Validate that a score is between 0 and 100 (inclusive).
 -- Return appropriate error messages for out-of-range values.
 def validateScore (n : Nat) : Except String Nat :=

@@ -19,7 +19,9 @@
       TODO : Prove these using `cases`.
       -/
 
---- QUESTION: Nat is an inductive type? Does that mean its definition is thorugh induction? what is the def?
+-- Yes, Nat is an inductive type! Its definition is:
+--   inductive Nat | zero | succ (n : Nat)
+-- `cases n` gives you exactly these two constructors.
 -- A number is either zero or positive
 theorem zero_or_pos (n : Nat) : n = 0 ∨ n > 0 := by
   cases n with

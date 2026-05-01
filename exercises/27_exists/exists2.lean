@@ -1,17 +1,19 @@
--- what? solutions don't seem to have anything to do with the intro comment
--- DOTHIS improve this
+/- # Existential Proofs 2: Using Existential Hypotheses
 
-/- # Existential Proofs 2: Destructuring
+The header above teaches destructuring with `let ⟨w, hw⟩ := h`,
+but these exercises can be solved by just providing NEW witnesses.
+Both skills matter — sometimes you extract, sometimes you construct.
 
-Given `h : ∃ x, P x`, extract the witness with :
+Given `h : ∃ x, P x`, you CAN extract the witness with :
   • `let ⟨w, hw⟩ := h` — gives you w and hw : P w
-  • `match h with | ⟨w, hw⟩ => ...`
-  • In tactic mode : `cases h with | intro w hw => ...`
+  • In tactic mode : `obtain ⟨w, hw⟩ := h`
 
-  TODO : Prove these by destructuring existential hypotheses.
-  -/
+Or you can ignore h and provide your own witness with `⟨value, proof⟩`.
 
--- If there exists an even number in some property, we can extract it
+TODO : Prove these. You may or may not need the hypothesis.
+-/
+
+-- We can provide our own witness regardless of the hypothesis.
 theorem exists_imp' (h : ∃ n : Nat, n + n = 10) : ∃ m : Nat, m = 5 := by
   exact ⟨5, rfl⟩
 

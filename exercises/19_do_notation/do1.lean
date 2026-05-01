@@ -30,8 +30,9 @@ def chainedDivide : Option Nat := do
   let y <- safeDivide x 4
   return y
 
---- QUESTION: why does return safeDivide 1 0 not work? Don't undestand error
 -- This should return none (division by zero in the chain)
+-- Note: `return safeDivide 1 0` won't work — `return` wraps in `some`,
+-- giving `some none : Option (Option Nat)`. Use `←` to unwrap first.
 def failingDivide : Option Nat := do
   let x <- safeDivide 1 0
   return x

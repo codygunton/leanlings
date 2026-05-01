@@ -14,16 +14,19 @@ Classically : `(¬Q → ¬P) → (P → Q)` needs `Classical.em`.
 TODO : Prove both directions.
 -/
 
--- Constructive direction (doesn't need classical logic)
--- QUESTION: how do make this use Classica.something?
+-- Constructive direction (doesn't need classical logic).
+-- This direction is purely constructive — no Classical axiom needed.
+-- (The reverse direction below is where Classical.em is required.)
 theorem contrapositive (P Q : Prop) (h : P → Q) : ¬Q → ¬P := by
   intro nq
   intro p
   let q := h p
   exact absurd q nq
 
--- Classical direction (needs excluded middle)
--- QUESTION: this works but give me some alternative s
+-- Classical direction (needs excluded middle).
+-- Your proof via double negation elimination works! Alternatives:
+--   • `Classical.byContradiction (fun hnq => absurd hp (h hnq))`
+--   • `cases Classical.em Q with | inl q => exact q | inr nq => exact absurd hp (h nq)`
 theorem contrapositive_reverse (P Q : Prop) (h : ¬Q → ¬P) : P → Q := by
   have cp := contrapositive (¬Q) (¬P) h
   intro p

@@ -23,25 +23,27 @@ TODO : For each theorem, first try `simp?`, read the suggestion
 -- Try `simp?` and replace with the suggested `simp only [...]`
 -- (simp? should suggest something like: simp only [List.nil_append])
 theorem discover1 (l : List Nat) : [] ++ l = l := by
-  sorry
+  simp only [List.nil_append]
 
 -- Try `simp?` — what lemma handles list reversal of a singleton?
 -- (If simp? suggests multiple lemmas, use all of them)
 theorem discover2 : [1, 2, 3].reverse = [3, 2, 1] := by
-  sorry
+  /- simp? -/
+  simp only [List.reverse_cons, List.reverse_nil, List.nil_append, List.cons_append]
 
 -- simp handles both the list simplification and the length equality here.
 -- (If simp alone doesn't close a goal, try adding `; omega` for arithmetic.)
+-- DOTHIS: this example just closes with simp so it's not a good example
 theorem mixed (l : List Nat) :
     ([] ++ l ++ []).length = l.length := by
-  sorry
+  simp?
 
 -- Now choose the right tool for each goal:
 -- Some need `simp`, some need `omega`, some need `rw`.
 -- Think about what each goal is asking before picking.
 theorem review_omega (a b : Nat) (h : a ≤ b) : a ≤ b + 1 := by
-  sorry
+  omega
 
 theorem review_simp (l₁ l₂ : List Nat) :
     [] ++ l₁ ++ (l₂ ++ []) = l₁ ++ l₂ := by
-  sorry
+  simp

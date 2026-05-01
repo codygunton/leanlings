@@ -27,21 +27,21 @@ TODO : Complete the proofs. All can be solved with `simp`.
 -- simp knows: l ++ [] = l  (List.append_nil)
 -- InfoView shows: ⊢ l ++ [] = l
 theorem append_nil (l : List Nat) : l ++ [] = l := by
-  sorry
+  simp
 
 -- simp knows: [] ++ l = l  (List.nil_append)
 -- InfoView shows: ⊢ [] ++ l = l
 theorem nil_append (l : List Nat) : [] ++ l = l := by
-  sorry
+  simp
 
 -- simp applies both lemmas in sequence!
 -- InfoView shows: ⊢ [] ++ l ++ [] = l
 -- simp simplifies [] ++ l → l, then l ++ [] → l.
 theorem both_sides (l : List Nat) : [] ++ l ++ [] = l := by
-  sorry
+  simp
 
 -- simp knows List.length_append — it handles length distributing over ++.
 -- This is a real library lemma, not just definitional equality.
 theorem length_append (l₁ l₂ : List Nat) :
     (l₁ ++ l₂).length = l₁.length + l₂.length := by
-  sorry
+  simp

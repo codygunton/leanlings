@@ -23,21 +23,21 @@ TODO : Complete the proofs. Think about whether `decide`
 -- Concrete comparison — no variables.
 -- Both `decide` and `omega` work. Use `decide`.
 theorem two_lt_five : 2 < 5 := by
-  sorry
+  decide
 
 -- Boolean facts — `decide` works, `omega` doesn't.
 theorem true_and_true : True ∧ True := by
-  sorry
+  decide
 
 -- String comparison — `decide` works, `omega` doesn't.
 theorem strings_differ : "hello" ≠ "world" := by
-  sorry
+  decide
 
 -- Now one that needs `omega` — variables!
 -- `decide` will fail here. Use `omega`.
 theorem var_lt (n : Nat) : n < n + 1 := by
-  sorry
+  omega
 
 -- A proposition involving `Or` with concrete values.
 theorem concrete_or : 3 = 3 ∨ 4 = 5 := by
-  sorry
+  decide

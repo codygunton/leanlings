@@ -7,7 +7,6 @@ This capstone exercise tests everything you've learned :
   TODO : Complete all definitions and proofs.
   -/
 
--- DOTHIS: this lesson is misplaced now?
 -- =============================================
 -- Part 1: Types & Functions (Units 6, 7)
 -- =============================================
@@ -41,8 +40,6 @@ def Tree.size : Tree α → Nat
   | .node l _ r => 1 + l.size + r.size
 #eval egtree.size
 
--- DOTHIS: should be noted that the student should freely remove :='s since they're 
--- there to make the thing compile with a sorry, I guess?
 -- 2. Collect all values into a list (in-order traversal).
 def Tree.toList : Tree α → List α
   | .leaf => []
@@ -50,10 +47,9 @@ def Tree.toList : Tree α → List α
 #eval egtree.toList
 
 -- 3. Mirror a tree: swap left and right subtrees recursively.
--- DOTHIS: doesn't apply to last layer
 def Tree.mirror : Tree α → Tree α
   | .leaf => .leaf
-  | .node l v r => .node r v l
+  | .node l v r => .node r.mirror v l.mirror
 #eval egtree
 #eval egtree.mirror
 
@@ -110,14 +106,14 @@ theorem Tree.size_mirror (t : Tree α) : t.mirror.size = t.size := by
 theorem Tree.depth_mirror (t : Tree α) : t.mirror.depth = t.depth := by
   induction t with
   | leaf => calc leaf.depth
-  | node l v r lih rih => simp [mirror, depth, Nat.max_comm]
+  | node l v r lih rih => simp [mirror, depth, lih, rih, Nat.max_comm]
 
 -- 12. Mirror is its own inverse: mirroring twice gives back
 --     the original tree.
 theorem Tree.mirror_mirror (t : Tree α) : t.mirror.mirror = t := by
   induction t with
-  | leaf => calc leaf.mirror
-  | node l v r lih tih => rw [mirror, mirror]
+  | leaf => rfl
+  | node l v r lih rih => simp [mirror, lih, rih]
 
 -- 13. The length of toList equals the size.
 theorem Tree.toList_length (t : Tree α) : t.toList.length = t.size := by
@@ -149,15 +145,11 @@ theorem Tree.node_has_element (l : Tree α) (v : α) (r : Tree α) :
 -- 16. A tree has size 0 if and only if it is a leaf.
 --     Use `constructor` to split the ↔ into two directions.
 --     For the forward direction, use `cases t` to case-split.
--- QUESTION: it's weird to me that we need to repeat the argument twice. is there a better idiom?
+-- Alternative: `constructor <;> (intro h; cases t <;> simp_all [size])`
+-- applies the same proof to both directions. Or use anonymous constructor:
+-- `⟨fun h => by cases t <;> simp_all [size], fun h => by cases t <;> simp_all [size]⟩`
 theorem Tree.size_zero_iff_leaf (t : Tree α) : t.size = 0 ↔ t = .leaf := by
-  constructor
-  cases t with
-  | leaf => simp[size]
-  | node l v r => simp[size]
-  cases t with
-  | leaf => simp[size]
-  | node l v r => simp[size]
+  constructor <;> (intro h; cases t <;> simp_all [size])
 
 -- =============================================
 -- Don't change below this line!

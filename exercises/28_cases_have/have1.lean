@@ -15,16 +15,19 @@
     TODO : Use `have` to break these proofs into steps.
     -/
 
---- QUESTION: I don't see the benefit of this over cases
--- Chain implications using intesorryrmediate steps
+-- `have` vs `cases`: `cases` destructs a value into its constructors.
+-- `have` introduces a NEW fact you derive from existing ones.
+-- When you're chaining implications (not destructing data), `have` is the right tool.
+-- Chain implications using intermediate steps
 theorem chain (P Q R : Prop) (hpq : P → Q) (hqr : Q → R) (hp : P) : R := by
   /- exact hqr (hpq hp) -/
   have hq : Q := hpq hp
   have hr : R := hqr hq
   exact hr
 
--- Use have to establish an intermediate fact
--- DOTHIS: need a better sublession on negation
+-- Use have to establish an intermediate fact.
+-- Recall: `¬P` is defined as `P → False`.
+-- So `¬¬P` is `(P → False) → False`.
 theorem double_neg_intro (P : Prop) (hp : P) : ¬¬P := by
   intro nhp
   exact nhp hp

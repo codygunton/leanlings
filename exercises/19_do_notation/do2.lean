@@ -18,7 +18,6 @@ def checkSmall (n : Int) : Except String Int :=
 
 -- Validate that a number is both positive and small
 -- Chain the two checks using do notation.
---- QUESTION: similar to the prevoius one in do1.lean
 def validate (n : Int) : Except String Int := do
   let tryPos <- checkPositive n;
   let trySmall <- checkSmall tryPos;

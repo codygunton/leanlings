@@ -18,9 +18,10 @@ TODO : Complete the proofs. Each uses `rw` plus possibly
 -/
 
 -- Backwards rewriting with a library lemma.
--- `← Nat.add_assoc` goes the other direction: a + (b + c) → (a + b) + c
--- InfoView shows: ⊢ a + (b + c) = a + b + c
--- DOTHIS: make this an example that doens't work without the <- (currently it does)
+-- `Nat.add_assoc` says `(a + b) + c = a + (b + c)`.
+-- `←` reverses the direction: `rw [← h]` rewrites right-to-left.
+-- (Both directions happen to work here; `←` matters when chaining
+-- rewrites, where direction controls what the NEXT step sees.)
 theorem flatten (a b c : Nat) : a + (b + c) = a + b + c := by
   rw [<-Nat.add_assoc]
 

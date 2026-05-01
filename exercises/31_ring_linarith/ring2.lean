@@ -37,6 +37,5 @@ theorem avg_bound (a b : Int) (h1 : a ≤ 10) (h2 : b ≤ 10) : a + b ≤ 20 := 
 -- More hypotheses
 theorem squeeze (x : Int) (h1 : 2 * x + 1 ≤ 7) (h2 : x ≥ 2) : x = 2 ∨ x = 3 := by
   omega -- this one needs omega (discrete), not linarith
-  -- QUESTION: why doesn't `linarith` work here?
-  -- Because `linarith` proves ONE inequality, not disjunctions.
-  -- For "x = 2 ∨ x = 3", you need case analysis.
+  -- Note: `linarith` can't prove disjunctions (∨). It proves
+  -- one inequality at a time. `omega` handles discrete case analysis.

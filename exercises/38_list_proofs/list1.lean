@@ -14,7 +14,8 @@ Lists support many useful lemmas :
 -- Appending nil on the right is identity
 theorem append_nil' (l : List α) : l ++ [] = l := by
   rw [List.append_nil]
-  ---QUESTION: why doesn't exact List.append_nil work here?
+  -- Note: `exact List.append_nil l` works too (you need to pass `l` explicitly).
+  -- Without the argument, Lean can't infer which list you mean.
 
 -- Append is associative
 theorem append_assoc' (a b c : List α) : (a ++ b) ++ c = a ++ (b ++ c) := by

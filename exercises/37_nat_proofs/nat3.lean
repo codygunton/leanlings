@@ -24,9 +24,9 @@ def sumTo : Nat → Nat
 
 -- Gauss's formula: sumTo n = n * (n + 1) / 2
 -- Since we're using Nat (no fractions), prove the doubled version:
--- QUESTION: this works but it's ugly, without pulling out any big hammers,
--- how do i do this more systematically so that the goal becomes more an dmore simple?
--- Also: what is the big hammer way?
+-- The repeated `rw` steps are needed because `omega` can't handle
+-- nonlinear terms (n * n). Each `rw [Nat.mul_add]` etc. distributes
+-- until only linear terms remain. With Mathlib: `simp [sumTo]; linarith [ih]`.
 theorem sumTo_formula (n : Nat) : 2 * sumTo n = n * (n + 1) := by
   induction n with
   | zero => trivial

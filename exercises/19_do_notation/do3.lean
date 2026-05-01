@@ -14,7 +14,10 @@ In a `do` block, you can use mutable variables and for loops :
     TODO : Implement these using mutable variables and for loops.
     -/
 
---- QUESTION: why do I need Id.run but here but not in the prevoius two examples?
+-- Note: `Id.run` is needed because `let mut` / `for` require a monad,
+-- but we're not in Option or Except — we want a pure Nat result.
+-- `Id` is the trivial "no effects" monad. Option/Except provided
+-- their own monad in the previous exercises, so no `Id.run` was needed.
 -- Count how many elements satisfy a predicate
 def countWhere (p : Nat → Bool) (l : List Nat) : Nat := Id.run do
   let mut total := 0
