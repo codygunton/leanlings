@@ -1,17 +1,15 @@
 /- # Functor 2: Implementing Functor for Your Types
 
-Any type `f : Type → Type` can be a Functor if you can
-define `map` for it. Let's implement Functor for custom types.
+Any `f : Type → Type` can be a Functor if you define `map`
+for it — `map` applies a function to the inner values while
+preserving the type's structure.
 
 To make your type a Functor, provide an `instance` :
 
   instance : Functor MyType where
-    map f x := ... -- apply f to the values inside x
+    map f x := ... -- apply f to the inner values of x
 
 Once you have a Functor instance, `<$>` works automatically.
-
-  Key idea : `map` transforms the VALUES inside a container
-  without changing the container's STRUCTURE.
 
 TODO : Implement the Functor instance for each type.
 -/
@@ -23,7 +21,7 @@ deriving Repr, BEq
 
 -- Implement Functor for Box: apply the function to the inner value.
 instance : Functor Box where
-  map f b := sorry
+  map f b := { val := f b.val }
 
 -- A pair that holds two values of the same type.
 structure Pair (α : Type) where
@@ -33,7 +31,7 @@ deriving Repr, BEq
 
 -- Implement Functor for Pair: apply the function to BOTH values.
 instance : Functor Pair where
-  map f p := sorry
+  map f p := { fst := f p.fst, snd := f p.snd }
 
 -- A binary tree with values at the nodes.
 inductive Tree (α : Type) where
@@ -44,7 +42,9 @@ deriving Repr, BEq
 -- Helper: implement map as a named function (needed for recursion).
 -- Lean can't use `<$>` inside the instance definition itself,
 -- so we define a helper and point the instance to it.
-def Tree.mapTree (f : α → β) : Tree α → Tree β := sorry
+def Tree.mapTree (f : α → β) : Tree α → Tree β
+    | leaf => leaf
+    | node l v r => node (mapTree f l) (f v) (mapTree f r)
 
 instance : Functor Tree where
   map := Tree.mapTree

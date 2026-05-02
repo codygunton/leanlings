@@ -1,5 +1,9 @@
 /- # Type Classes 1: Using Type Classes
 
+A type class is NOT a data type — it's an interface.
+`inductive` and `structure` define what values LOOK like;
+`class` defines what operations a type SUPPORTS.
+
 Type classes provide overloaded operations :
 
   • `ToString α` — convert to String via `toString`

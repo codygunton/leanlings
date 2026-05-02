@@ -1,12 +1,12 @@
 /- # Functor 3: Applicative — Wrapping and Combining
 
-`Functor` lets you transform values inside a container.
-But what if the FUNCTION is also inside a container?
+`Functor` lets you apply a plain function through a type.
+But what if the FUNCTION is also wrapped in that type?
 
   some (· + 1) <*> some 5 = some 6 -- apply wrapped function
   none <*> some 5 = none -- no function → no result
 
-This is `Applicative`, which adds two operations to Functor :
+`Applicative` extends Functor with two operations :
 
   `pure x` — wrap a plain value : `pure 5 : Option Nat = some 5`
   `f <*> x` — apply a wrapped function to a wrapped value
@@ -25,14 +25,12 @@ does not (it only has Functor). So we practice with Option.
 TODO : Use `pure` and `<*>` to work with wrapped values.
 -/
 
--- Use `pure` to wrap a value in an Option.
-def wrapOption (n : Nat) : Option Nat := sorry
+-- Use `pure` to lift a value into Option.
+def wrapOption (n : Nat) : Option Nat := pure n
 
--- Use <*> to apply a wrapped function.
--- Given an Option containing a function and an Option containing
--- a value, apply the function to the value.
+-- Use <*> to apply a function in Option to a value in Option.
 def applyOpt (f : Option (Nat → Nat)) (x : Option Nat) : Option Nat :=
-  sorry
+  f <*> x
 
 -- Combine two Options: if both are `some`, add them.
 -- Use `<$>` and `<*>`:
@@ -40,17 +38,20 @@ def applyOpt (f : Option (Nat → Nat)) (x : Option Nat) : Option Nat :=
 -- Step by step:
 --   (· + ·) <$> some 3  =  some (3 + ·)   (a wrapped function!)
 --   some (3 + ·) <*> some 4  =  some 7
-def addOptions (a b : Option Nat) : Option Nat := sorry
+def addOptions (a b : Option Nat) : Option Nat :=
+  (· + · ) <$> a <*> b
 
 -- Combine three Options: multiply width × height × depth.
 -- If any is `none`, the result is `none`.
 -- Hint: chain <$> and <*>: `(fun a b c => ...) <$> x <*> y <*> z`
-def volume (w h d : Option Nat) : Option Nat := sorry
+def volume (w h d : Option Nat) : Option Nat :=
+  (· * · * ·) <$> w <*> h <*> d
 
 -- Use Applicative to validate two fields at once.
 -- If both names are non-empty, return `some (first ++ " " ++ last)`.
 -- If either is empty (""), return `none`.
-def fullName (first last : Option String) : Option String := sorry
+def fullName (first last : Option String) : Option String :=
+  (· ++ " " ++ ·) <$> first <*> last
 
 #guard wrapOption 42 == some 42
 #guard applyOpt (some (· + 1)) (some 5) == some 6

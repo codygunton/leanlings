@@ -6,9 +6,10 @@ theorem discover1 (l : List Nat) : [] ++ l = l := by
 theorem discover2 : [1, 2, 3].reverse = [3, 2, 1] := by
   simp only [List.reverse_cons, List.reverse_nil, List.nil_append, List.cons_append]
 
-theorem mixed (l : List Nat) :
-    ([] ++ l ++ []).length = l.length := by
+theorem mixed (l : List Nat) (h : l.length ≥ 2) :
+    ([] ++ l ++ []).length ≥ 2 := by
   simp
+  omega
 
 theorem review_omega (a b : Nat) (h : a ≤ b) : a ≤ b + 1 := by
   omega

@@ -3,6 +3,7 @@
 You've already used monads! Every `do` block desugars to
 calls to `bind` (written `>>=`):
 
+DOTHIS : I don't think this example is complete or makes sense
     do -- desugars to:
       let x ← getFirst getFirst >>= fun x =>
       let y ← getSecond x getSecond x >>= fun y =>
@@ -24,8 +25,9 @@ def safeDivide (a b : Nat) : Option Nat :=
 
 -- Rewrite using >>= instead of do notation
 -- do let x ← safeDivide 10 2; let y ← safeDivide x 1; return x + y
-def chainBind : Option Nat :=
-  sorry
+def chainBind : Option Nat := safeDivide 10 2 >>= (fun n => safeDivide n 1)
+
+#eval chainBind
 
 -- Same idea: chain two operations with >>=
 -- do let x ← some 3; let y ← some 4; return x * y

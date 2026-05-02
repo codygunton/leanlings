@@ -31,12 +31,11 @@ theorem discover2 : [1, 2, 3].reverse = [3, 2, 1] := by
   /- simp? -/
   simp only [List.reverse_cons, List.reverse_nil, List.nil_append, List.cons_append]
 
--- simp handles both the list simplification and the length equality here.
--- (If simp alone doesn't close a goal, try adding `; omega` for arithmetic.)
--- DOTHIS: this example just closes with simp so it's not a good example
-theorem mixed (l : List Nat) :
-    ([] ++ l ++ []).length = l.length := by
-  simp?
+-- `simp` cleans up the list noise, but can't close the arithmetic.
+-- After `simp?`, you'll still have a goal — use `omega` to finish.
+theorem mixed (l : List Nat) (h : l.length ≥ 2) :
+    ([] ++ l ++ []).length ≥ 2 := by
+  sorry
 
 -- Now choose the right tool for each goal:
 -- Some need `simp`, some need `omega`, some need `rw`.
