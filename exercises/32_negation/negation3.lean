@@ -8,23 +8,24 @@ You now know three negation tactics :
   `by_contra` — assume ¬(goal), derive False
 
 Pick the right one for each goal below.
+ODTHIS : if you'r egoing to say the user should pick hich one, we shouldn't tell them which one to use in each exercise
 
 TODO : Replace each `sorry` with the right approach.
 -/
 
--- push_neg: simplify the negated quantifier
 theorem exists_nonprime : ¬ ∀ n : Nat, n ≥ 2 → Nat.Prime n := by
-  sorry
+  push_neg
+  exact ⟨4, by decide⟩
 
--- contrapose: flip the direction, then prove the easier version
+-- DOTHIS: solution has at h notation whicih I don't think has been introduced yet
+-- I think we probably need a separate lession on this at stuff
 theorem lt_of_sq_lt_four (n : Nat) : n ^ 2 < 4 → n < 2 := by
-  sorry
+  contrapose!
+  have h2 := 2 ^ 2 = 4
 
--- by_contra: assume ¬ and derive contradiction
--- If a list has an element, it's not empty
+
 theorem ne_nil_of_mem {α : Type} {a : α} {l : List α} (h : a ∈ l) : l ≠ [] := by
   sorry
 
--- Combine: push_neg then omega/decide
 theorem not_all_le_self : ¬ ∀ n : Nat, n + 1 ≤ n := by
   sorry

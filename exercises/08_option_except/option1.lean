@@ -25,19 +25,31 @@ TODO : Implement each function using `Option`.
 -/
 
 -- Return `none` if b is 0, otherwise `some (a / b)`.
-def safeDivide (a b : Nat) : Option Nat := sorry
+def safeDivide (a b : Nat) : Option Nat :=
+  match b with
+  | 0 => none
+  | b => some (a/b)
 
 -- Return the first element, or `none` for an empty list.
 -- Hint: match on the list; `[]` is empty, `x :: _` has a head.
-def safeHead (l : List α) : Option α := sorry
+def safeHead (l : List α) : Option α :=
+  match l with
+  | [] => none
+  | a::_ => a
 
 -- Return the last element, or `none` for an empty list.
 -- Hint: match on the list; a singleton [x] is `x :: []`.
-def safeLast : List α → Option α := sorry
+def safeLast : List α → Option α
+  | [] => none
+  | [a] => some a
+  | _::as => safeLast as
 
 -- Extract the value from an Option, using a default if none.
 -- (This already exists as `Option.getD`, but implement it yourself.)
-def getOrDefault (o : Option Nat) (d : Nat) : Nat := sorry
+def getOrDefault (o : Option Nat) (d : Nat) : Nat :=
+  match o with
+  | some n => n
+  | none => d
 
 #guard safeDivide 10 2 == some 5
 #guard safeDivide 10 0 == none

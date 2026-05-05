@@ -25,24 +25,30 @@ def safeDivide (a b : Nat) : Option Nat :=
 
 -- Rewrite using >>= instead of do notation
 -- do let x ← safeDivide 10 2; let y ← safeDivide x 1; return x + y
-def chainBind : Option Nat := safeDivide 10 2 >>= (fun n => safeDivide n 1)
-
-#eval chainBind
+def chainBind : Option Nat :=
+  safeDivide 10 2 >>= fun x => safeDivide x 1
+                  >>= fun y => x + y
 
 -- Same idea: chain two operations with >>=
 -- do let x ← some 3; let y ← some 4; return x * y
+-- DOTHIS this exercise is kinda contrived...
 def multiplyBind : Option Nat :=
-  sorry
+  some 3 >>= fun x => pure (x * 4)
 
 -- Short-circuit: if the first step returns none, the chain stops
 -- do let x ← (none : Option Nat); return x + 1
+-- DOTHIS I odn't undrstand why this works or what it's showing
 def failBind : Option Nat :=
-  sorry
+  (none : Option Nat) >>= (fun x => pure (x+1) )
+
 
 -- Combine: parse two strings as numbers, add them
 -- Use >>= to chain: try first, try second, combine
 def addStrings (a b : String) : Option Nat :=
-  sorry
+  a >>= String.toNat? >>= fun n1 =>
+  b >>= String.toNat? >>= fun n2 => pure (n1 + n2)
+
+#eval addStrings "2" "3"
 
 -- Don't change below this line!
 #guard chainBind == some 10

@@ -26,18 +26,25 @@ TODO : Replace each `sorry` with the right tactic(s).
 -- Contraposition: easier to prove ¬Q → ¬P
 -- "if n^2 = 0 then n = 0" via contrapositive
 theorem sq_zero_imp (n : Nat) : n ^ 2 = 0 → n = 0 := by
-  sorry
+  contrapose!
+  intro h
+  positivity
 
 -- contrapose! combines contrapose + push_neg
 -- "if n < m then n ≠ m"
 theorem lt_imp_ne (n m : Nat) : n < m → n ≠ m := by
-  sorry
+  contrapose!
+  intro h
+  rw [h]
 
 -- by_contra: assume the negation, derive False
 -- Double negation elimination
 theorem dne (p : Prop) (h : ¬¬p) : p := by
-  sorry
+  by_contra
+  exact (h this)
 
 -- by_contra with hypotheses
 theorem not_both_true (p q : Prop) (h1 : p → ¬q) (hp : p) (hq : q) : False := by
-  sorry
+  by_contra
+  have nq := (h1 hp)
+  exact (nq hq)

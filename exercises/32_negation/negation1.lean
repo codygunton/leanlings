@@ -20,19 +20,23 @@ TODO : Replace each `sorry` with `push_neg` followed by
 -- ¬ ∀ n, n > 0 becomes ∃ n, n ≤ 0
 -- After push_neg, provide the witness 0.
 theorem not_all_pos : ¬ ∀ n : Nat, n > 0 := by
-  sorry
+  push_neg
+  exact ⟨0, by decide⟩
 
 -- ¬ ∃ n, n > n becomes ∀ n, n ≤ n
 -- After push_neg, this follows from le_refl.
 theorem no_self_gt : ¬ ∃ n : Nat, n > n := by
-  sorry
+  push_neg
+  omega
 
 -- ¬ (a < b ∧ b < a) becomes a ≥ b ∨ b ≥ a (or similar)
 -- After push_neg, omega can finish.
 theorem not_both_lt (a b : Nat) : ¬ (a < b ∧ b < a) := by
-  sorry
+  push_neg
+  omega
 
 -- Negating an implication inside a forall
 -- ¬ ∀ n, n > 0 → n > 100 becomes ∃ n, n > 0 ∧ n ≤ 100
 theorem not_all_big : ¬ ∀ n : Nat, n > 0 → n > 100 := by
-  sorry
+  push_neg
+  exact ⟨1, by decide⟩

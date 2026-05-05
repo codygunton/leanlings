@@ -17,23 +17,28 @@ TODO : Write polymorphic monadic functions using `[Monad m]`.
 -/
 
 -- Apply a function to the value inside any monad
--- Hint: use `do` with `←` and `pure`
+-- Use `do`
 def mapM' [Monad m] (f : α → β) (mx : m α) : m β := do
-  sorry
+  let x <- mx
+  pure (f x)
 
 -- Chain two monadic values, keeping only the second
 -- This is like `>>` in Haskell
--- Hint: extract from first (ignore it), then return second
 def seqM [Monad m] (ma : m α) (mb : m β) : m β := do
-  sorry
+  let _ <- ma
+  let b <- mb
+  pure b
 
 -- Apply a monadic function to each element of a list,
 -- collecting results. If any step fails, the whole thing fails.
--- Hint: use recursion. Base case: pure [].
--- Recursive case: do let y ← f x; let ys ← forM' f xs; pure (y :: ys)
+-- DOTHIS: this one is kinda tricky
 def forM' [Monad m] (f : α → m β) : List α → m (List β)
-  | [] => sorry
-  | x :: xs => sorry
+  | [] => pure []
+  | x :: xs => do
+    let v <- f x
+    let vs <- forM' f xs
+    pure (v::vs)
+
 
 -- Don't change below this line!
 #guard mapM' (· + 1) (some 5) == some 6

@@ -31,8 +31,10 @@ def tell (msg : String) : Writer Unit :=
 -- bind: run first computation, pass its value to f,
 --       concatenate both logs
 instance : Monad Writer where
-  pure x := sorry
-  bind w f := sorry
+  pure x := {value := x, log := []}
+  bind w f :=
+    let w' := f w.value
+    {w' with log := w.log ++ w'.log}
 
 -- Use your Writer monad: compute a result while logging steps
 def computeWithLog : Writer Nat := do

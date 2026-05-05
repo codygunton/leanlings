@@ -35,7 +35,8 @@ theorem discover2 : [1, 2, 3].reverse = [3, 2, 1] := by
 -- After `simp?`, you'll still have a goal — use `omega` to finish.
 theorem mixed (l : List Nat) (h : l.length ≥ 2) :
     ([] ++ l ++ []).length ≥ 2 := by
-  sorry
+  simp
+  omega
 
 -- Now choose the right tool for each goal:
 -- Some need `simp`, some need `omega`, some need `rw`.
