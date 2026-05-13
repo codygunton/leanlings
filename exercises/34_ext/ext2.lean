@@ -16,8 +16,10 @@ TODO : Replace each `sorry` with a proof using `ext`.
 -/
 
 -- Two pairs are equal if their components match
+-- DOTHIS: this solution uses a undefined notation
 theorem pair_eq : (1, 2) = (1, 2) := by
-  sorry
+  ext <;>
+  rfl
 
 -- Prove two pairs equal by showing components equal
 theorem pair_eq_of (a b c d : Nat) (h1 : a = c) (h2 : b = d) :
